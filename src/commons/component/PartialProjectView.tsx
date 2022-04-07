@@ -3,36 +3,41 @@ import React from "react";
 import { PartialProjectData } from "../model";
 import { TechnologyInfoView } from "./TechnologyTagView";
 import { UpvoteArrowView } from "./UpvoteArrowView";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const PartialProjectInfoView = ({
   project,
+  onClickCallback = () => {},
 }: {
   project: PartialProjectData;
+  onClickCallback: () => void;
 }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.upperContainer}>
-        <View style={styles.logoContainer}></View>
-        <Text style={styles.title}>{project.title}</Text>
-        <Text style={styles.date}>Posted by: {project.authors[0] || ""}</Text>
-      </View>
-      <View style={styles.middleContaner}>
-        <Text style={styles.description}>{project.description || ""}</Text>
-      </View>
-      <View style={styles.lowerContainer}>
-        <View style={styles.tagsContainer}>
-          {project.technologies.map((tech) => (
-            <TechnologyInfoView key={tech.id} techonolgy={tech} />
-          ))}
+    <TouchableOpacity onPress={() => onClickCallback()}>
+      <View style={styles.container}>
+        <View style={styles.upperContainer}>
+          <View style={styles.logoContainer}></View>
+          <Text style={styles.title}>{project.title}</Text>
+          <Text style={styles.date}>Posted by: {project.authors[0] || ""}</Text>
         </View>
-        <View style={styles.upvotesContainer}>
-          <View style={{ marginRight: 5 }}>
-            <UpvoteArrowView size={15} />
+        <View style={styles.middleContaner}>
+          <Text style={styles.description}>{project.description || ""}</Text>
+        </View>
+        <View style={styles.lowerContainer}>
+          <View style={styles.tagsContainer}>
+            {project.technologies.map((tech) => (
+              <TechnologyInfoView key={tech.id} techonolgy={tech} />
+            ))}
           </View>
-          <Text style={styles.likesContainer}>{project.stars}</Text>
+          <View style={styles.upvotesContainer}>
+            <View style={{ marginRight: 5 }}>
+              <UpvoteArrowView size={15} />
+            </View>
+            <Text style={styles.likesContainer}>{project.stars}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -54,13 +59,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: "700",
-    fontFamily: "monospace",
     maxWidth: "60%",
   },
   date: {
     fontSize: 12,
     fontWeight: "300",
-    fontFamily: "monospace",
     marginHorizontal: 20,
   },
   logoContainer: {},
