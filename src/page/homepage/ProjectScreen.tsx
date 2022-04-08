@@ -74,7 +74,7 @@ export const ProjectScreen = () => {
         <View style={styles.metadataContainer}>
           <View style={styles.tagsContainer}>
             {project.technologies.map((tech) => (
-              <TechnologyTagView techonolgy={tech} />
+              <TechnologyTagView key={tech.id} techonolgy={tech} />
             ))}
           </View>
           <UpvotesView upvotes={project.stars} />
@@ -109,12 +109,14 @@ const styles = StyleSheet.create({
   author: { fontSize: 12 },
   middleContainer: {
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-start",
     maxHeight: "50%",
     paddingHorizontal: "2%",
   },
   descriptionContainer: {
+    maxWidth: "70%",
     alignItems: "flex-start",
+    justifyContent: "flex-start",
     marginVertical: "1%",
   },
   descriptionText: { fontSize: 17, fontWeight: "300" },
