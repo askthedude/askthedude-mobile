@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { TechnologyData } from "../model";
 
-export const TechnologyInfoView = ({
+export const TechnologyTagView = ({
   techonolgy,
   backgroundColor,
 }: {
@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
     marginVertical: 3,
     justifyContent: "center",
     alignItems: "center",
+    borderColor: "#DDDDDD",
+    borderWidth: 1,
   },
   text: { color: "black", fontSize: 13, fontWeight: "700" },
 });

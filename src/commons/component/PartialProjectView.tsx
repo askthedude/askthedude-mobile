@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { PartialProjectData } from "../model";
-import { TechnologyInfoView } from "./TechnologyTagView";
+import { TechnologyTagView } from "./TechnologyTagView";
 import { UpvoteArrowView } from "./UpvoteArrowView";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import UpvotesView from "./UpvotesView";
 
 export const PartialProjectInfoView = ({
   project,
@@ -26,15 +27,10 @@ export const PartialProjectInfoView = ({
         <View style={styles.lowerContainer}>
           <View style={styles.tagsContainer}>
             {project.technologies.map((tech) => (
-              <TechnologyInfoView key={tech.id} techonolgy={tech} />
+              <TechnologyTagView key={tech.id} techonolgy={tech} />
             ))}
           </View>
-          <View style={styles.upvotesContainer}>
-            <View style={{ marginRight: 5 }}>
-              <UpvoteArrowView size={15} />
-            </View>
-            <Text style={styles.likesContainer}>{project.stars}</Text>
-          </View>
+          <UpvotesView upvotes={project.stars} />
         </View>
       </View>
     </TouchableOpacity>
@@ -83,15 +79,4 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   tagsContainer: { flexDirection: "row", alignItems: "flex-start" },
-  upvotesContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  likesContainer: {
-    fontSize: 15,
-    justifyContent: "center",
-    alignItems: "center",
-    fontWeight: "bold",
-  },
 });
