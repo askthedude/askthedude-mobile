@@ -4,6 +4,8 @@ import { useRoute } from "@react-navigation/native";
 import { CompleteProjectData } from "../../commons/model";
 import { TechnologyTagView } from "../../commons/component/TechnologyTagView";
 import UpvotesView from "../../commons/component/UpvotesView";
+import UserInfoView from "../../commons/component/UserInfoView";
+import ProjectDetails from "../../commons/component/ProjectDetails";
 
 export const ProjectScreen = () => {
   const project: CompleteProjectData = {
@@ -77,9 +79,15 @@ export const ProjectScreen = () => {
           </View>
           <UpvotesView upvotes={project.stars} />
         </View>
+        <ProjectDetails
+          project_url={project.url}
+          start_date={project.start_date}
+          statistics={project.stats}
+        />
       </View>
-
-      <View style={styles.bottomContainer}></View>
+      <View style={styles.bottomContainer}>
+        <UserInfoView user={project.users[0]} />
+      </View>
     </View>
   );
 };
@@ -104,13 +112,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     maxHeight: "50%",
     paddingHorizontal: "2%",
-    marginVertical: "1%",
   },
   descriptionContainer: {
     alignItems: "flex-start",
     marginVertical: "1%",
   },
   descriptionText: { fontSize: 17, fontWeight: "300" },
+  detailsContainer: {},
   metadataContainer: {
     width: "100%",
     alignItems: "center",
@@ -123,7 +131,9 @@ const styles = StyleSheet.create({
   tagsContainer: {
     alignItems: "flex-start",
     flexDirection: "row",
-    marginVertical: "1%",
+    paddingVertical: "1%",
   },
-  bottomContainer: {},
+  bottomContainer: {
+    paddingHorizontal: "2%",
+  },
 });

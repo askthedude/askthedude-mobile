@@ -2,8 +2,6 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { UpvoteArrowView } from "./UpvoteArrowView";
 
-type Props = {};
-
 const UpvotesView = ({ upvotes }: { upvotes: number }) => {
   return (
     <View style={styles.container}>
