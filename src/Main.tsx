@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
+import { Provider } from "react-redux";
 import { MainNavigation } from "./navigation/MainNavigation";
+import { store } from "./state/store/index";
 
 export default () => {
+  useEffect(() => {}, []);
+
   return (
     <View style={styles.container}>
-      <MainNavigation />
+      <Provider store={store}>
+        <MainNavigation />
+      </Provider>
     </View>
   );
 };

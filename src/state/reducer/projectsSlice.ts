@@ -1,0 +1,50 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { PartialProjectData } from "../../commons/model/index";
+import { requestApi } from "../../commons/api/index";
+
+export interface ProjectsState {
+  loading: "idle" | "pending" | "succeeded" | "failed";
+  projects: PartialProjectData[];
+}
+
+const initialState: ProjectsState = {
+  loading: "idle",
+  projects: [],
+};
+
+export const filterProjects = createAsyncThunk(
+  "project/filter",
+  async (projectFilter: any, thunkAPI) => {
+    try {
+      const response: any = await requestApi(
+        "api/project/filter",
+        "POST",
+        projectFilter
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue("Opps there seems to be an error");
+    }
+  }
+);
+
+export const projectsSlice = createSlice({
+  name: "projects",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(filterProjects.fulfilled, (state, action) => {
+        state.projects = action.payload;
+        state.loading = "succeeded";
+      })
+      .addCase(filterProjects.rejected, (state, action) => {
+        state.projects = [];
+        state.loading = "failed";
+      })
+      .addCase(filterProjects.pending, (state, action) => {
+        state.projects = [];
+        state.loading = "pending";
+      });
+  },
+});

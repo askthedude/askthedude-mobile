@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Linking, Alert } from "react-native";
 import React from "react";
 import { StatisticsData } from "../model";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Link } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const ProjectDetails = ({
@@ -32,12 +31,14 @@ const ProjectDetails = ({
       >
         <Text style={styles.urlText}>Visit project page</Text>
       </TouchableOpacity>
-      <View style={styles.date_container}>
-        <Text>Start date: {start_date}</Text>
-      </View>
-      <View style={styles.statisticsContainer}>
-        <Ionicons name="eye-outline" size={24} />
-        <Text style={styles.seenFrequency}>{statistics.seen_frequency}</Text>
+      <View style={styles.detailsContainer}>
+        <View style={styles.date_container}>
+          <Text>Start date: {start_date}</Text>
+        </View>
+        <View style={styles.statisticsContainer}>
+          <Ionicons name="eye-outline" size={24} />
+          <Text style={styles.seenFrequency}>{statistics.seen_frequency}</Text>
+        </View>
       </View>
     </View>
   );
@@ -61,6 +62,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
+  },
+  detailsContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   date_container: {
     marginVertical: 8,
