@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { useRoute } from "@react-navigation/native";
-import { CompleteProjectData } from "../../commons/model";
-import { TechnologyTagView } from "../../commons/component/TechnologyTagView";
-import UpvotesView from "../../commons/component/UpvotesView";
-import UserInfoView from "../../commons/component/UserInfoView";
-import ProjectDetails from "../../commons/component/ProjectDetails";
+import { CompleteProjectData } from "../../../commons/model";
+import { TechnologyTagView } from "../../../commons/component/TechnologyTagView";
+import UpvotesView from "../../../commons/component/UpvotesView";
+import UserInfoView from "../../../commons/component/UserInfoView";
+import ProjectDetails from "../../../commons/component/ProjectDetails";
 
 export const ProjectScreen = () => {
   const project: CompleteProjectData = {

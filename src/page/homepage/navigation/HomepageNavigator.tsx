@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { ProjectListScreen } from "./ProjectListScreen";
-import { ProjectScreen } from "./ProjectScreen";
+import { ProjectListScreen } from "../screen/ProjectListScreen";
+import { ProjectScreen } from "../screen/ProjectScreen";
 
 const Stack = createStackNavigator();
 

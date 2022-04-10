@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
-import { HomepageNavigator } from "./HomepageNavigator";
+import { HomepageNavigator } from "./navigation/HomepageNavigator";
 
 export const HomePage = () => {
   return (
