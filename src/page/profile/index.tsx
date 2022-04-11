@@ -1,14 +1,21 @@
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { Login } from "../login";
 
-type Props = {};
+export const Profile = () => {
+  const user = useSelector((state: RootState) => state.user.user);
 
-export const Profile = (props: Props) => {
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
-      <View style={{}}>
-        <Text>Profile</Text>
-      </View>
+      {user === undefined ? (
+        <Login />
+      ) : (
+        <View style={styles.container}>
+          <Text>Profile</Text>
+        </View>
+      )}
     </SafeAreaView>
   );
 };
@@ -18,5 +25,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  container: {
+    flex: 1,
   },
 });
