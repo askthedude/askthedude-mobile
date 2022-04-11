@@ -22,7 +22,7 @@ const validateInputMethod = (method: string) => {
 export const requestApi = async (
   url: string,
   method: Method,
-  body: any
+  body: any = {}
 ): Promise<any> => {
   if (validateInputMethod(method)) {
     const requestBody: any = {

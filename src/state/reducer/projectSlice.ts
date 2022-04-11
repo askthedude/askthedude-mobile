@@ -16,11 +16,7 @@ export const getProjectById = createAsyncThunk(
   "project/getById",
   async (projectId: number, thunkAPI) => {
     try {
-      const response: any = await requestApi(
-        `api/project/${projectId}`,
-        "GET",
-        {}
-      );
+      const response: any = await requestApi(`api/project/${projectId}`, "GET");
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err);
