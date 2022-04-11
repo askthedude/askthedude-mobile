@@ -1,18 +1,23 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-gesture-handler";
-import { Divider } from "../../commons/component/Divider";
+import { Divider } from "../../../commons/component/Divider";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Button from "../../commons/component/Button";
-import { useDispatch } from "react-redux";
-import { UserLogin, userLogin } from "../../state/reducer/userSlice";
+import Button from "../../../commons/component/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { UserLogin, userLogin } from "../../../state/reducer/userSlice";
+import { RootState } from "../../../state/store";
+import { useNavigation } from "@react-navigation/native";
+import Loading from "../../../commons/component/LoadingView";
 
 const PRIMARY_BLUE_COLOR = "#1484D7";
 
-export const Login = () => {
+export const LoginScreen = () => {
   const dispatch = useDispatch();
+  const navigation: any = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { user, loading } = useSelector((state: RootState) => state.user);
 
   const signin = () => {
     if (username && username !== "" && password && password !== "") {
@@ -25,6 +30,13 @@ export const Login = () => {
       dispatch(userLogin(data));
     }
   };
+
+  useEffect(() => {
+    if (user !== undefined) {
+      navigation.replace("Profile", {});
+    }
+  }, [user]);
+
   const signup = () => {};
 
   return (
@@ -54,33 +66,39 @@ export const Login = () => {
           />
         </View>
       </View>
-      <Button
-        text={"Sign in"}
-        callback={() => {
-          signin();
-        }}
-      />
-      <View style={styles.dividerContainer}>
-        <Divider />
-      </View>
-      <View>
-        <Text>Forgot your username or password?</Text>
-        <View style={styles.signupContainer}>
-          <Text>New to Projectify?</Text>
+      {loading === "pending" ? (
+        <Loading />
+      ) : (
+        <>
           <Button
-            text={"Sign up"}
-            inputBackgroundColor={"white"}
-            inputFontColor={PRIMARY_BLUE_COLOR}
-            inputWidth={120}
-            inputHeight={35}
-            inputBorderWidth={1}
-            otherStyles={{ marginVertical: 20 }}
+            text={"Sign in"}
             callback={() => {
-              signup();
+              signin();
             }}
           />
-        </View>
-      </View>
+          <View style={styles.dividerContainer}>
+            <Divider />
+          </View>
+          <View>
+            <Text>Forgot your username or password?</Text>
+            <View style={styles.signupContainer}>
+              <Text>New to Projectify?</Text>
+              <Button
+                text={"Sign up"}
+                inputBackgroundColor={"white"}
+                inputFontColor={PRIMARY_BLUE_COLOR}
+                inputWidth={120}
+                inputHeight={35}
+                inputBorderWidth={1}
+                otherStyles={{ marginVertical: 20 }}
+                callback={() => {
+                  signup();
+                }}
+              />
+            </View>
+          </View>
+        </>
+      )}
     </View>
   );
 };
