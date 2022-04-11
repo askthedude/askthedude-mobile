@@ -9,8 +9,7 @@ import { UserLogin, userLogin } from "../../../state/reducer/userSlice";
 import { RootState } from "../../../state/store";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../../../commons/component/LoadingView";
-
-const PRIMARY_BLUE_COLOR = "#1484D7";
+import { color } from "../../../commons/style";
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -48,7 +47,7 @@ export const LoginScreen = () => {
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Username"
-            placeholderTextColor={"#1C1C1C"}
+            placeholderTextColor={color.black}
             style={styles.username}
             onChangeText={(txt) => {
               setUsername(txt);
@@ -58,7 +57,7 @@ export const LoginScreen = () => {
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Password"
-            placeholderTextColor={"#1C1C1C"}
+            placeholderTextColor={color.black}
             style={styles.password}
             onChangeText={(txt) => {
               setPassword(txt);
@@ -86,7 +85,7 @@ export const LoginScreen = () => {
               <Button
                 text={"Sign up"}
                 inputBackgroundColor={"white"}
-                inputFontColor={PRIMARY_BLUE_COLOR}
+                inputFontColor={color.primary}
                 inputWidth={120}
                 inputHeight={35}
                 inputBorderWidth={1}
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#DAE0E6",
+    backgroundColor: color.grey,
     paddingVertical: 20,
     justifyContent: "flex-start",
     alignItems: "center",
@@ -123,12 +122,12 @@ const styles = StyleSheet.create({
   inputContainer: {
     height: 40,
     width: 250,
-    backgroundColor: "white",
+    backgroundColor: color.white,
     marginVertical: 15,
     borderRadius: 5,
     padding: 5,
     borderWidth: 1,
-    borderColor: "#F2F3F4",
+    borderColor: color.borderGrey,
   },
   username: {
     flex: 1,

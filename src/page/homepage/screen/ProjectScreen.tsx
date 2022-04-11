@@ -13,6 +13,7 @@ import {
   updateProjectStats,
 } from "../../../state/reducer/projectSlice";
 import Loading from "../../../commons/component/LoadingView";
+import { color } from "../../../commons/style";
 
 export const ProjectScreen = () => {
   const route: any = useRoute();
@@ -74,7 +75,7 @@ export const ProjectScreen = () => {
 const styles = StyleSheet.create({
   safeAreaViewcontainer: {
     flex: 1,
-    backgroundColor: "#DAE0E6",
+    backgroundColor: color.grey,
   },
   container: {
     flex: 1,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: "#F8F9FA",
+    backgroundColor: color.lighterGrey,
     borderRadius: 3,
     paddingHorizontal: "3%",
   },

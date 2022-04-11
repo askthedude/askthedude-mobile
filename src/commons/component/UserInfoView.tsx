@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { UserData } from "../model";
+import { color } from "../style";
 
 const UserInfoView = ({ user }: { user?: UserData }) => {
   return (
@@ -25,7 +26,7 @@ const UserInfoView = ({ user }: { user?: UserData }) => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: "#F8F9FA",
+    backgroundColor: color.lighterGrey,
     paddingHorizontal: "3%",
     borderRadius: 3,
     paddingVertical: "1%",

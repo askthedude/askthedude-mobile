@@ -4,6 +4,7 @@ import { PartialProjectData } from "../model";
 import { TechnologyTagView } from "./TechnologyTagView";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import UpvotesView from "./UpvotesView";
+import { color } from "../style";
 
 export const PartialProjectInfoView = ({
   project,
@@ -39,7 +40,7 @@ export const PartialProjectInfoView = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: color.white,
     marginVertical: 5,
     borderRadius: 5,
   },
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: "#F8F9FA",
+    backgroundColor: color.lighterGrey,
     padding: 5,
   },
   tagsContainer: { flexDirection: "row", alignItems: "flex-start" },

@@ -1,10 +1,10 @@
 import { Text, StyleSheet } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { color } from "../style";
 
 const DEFAULT_WIDTH = 240;
 const DEFAULT_HEIGHT = 45;
-const DEFAULT_BACKGROUND_COLOR = "#1484D7";
 
 const Button = ({
   callback = () => {},
@@ -14,7 +14,7 @@ const Button = ({
   inputFontColor,
   text = "Press",
   inputBorderWidth = 0,
-  inputBorderColor = DEFAULT_BACKGROUND_COLOR,
+  inputBorderColor = color.primary,
   otherStyles = {},
 }: {
   callback: any;
@@ -34,7 +34,7 @@ const Button = ({
         {
           width: inputWidth || DEFAULT_WIDTH,
           height: inputHeight || DEFAULT_HEIGHT,
-          backgroundColor: inputBackgroundColor || DEFAULT_BACKGROUND_COLOR,
+          backgroundColor: inputBackgroundColor || color.primary,
           borderWidth: inputBorderWidth,
           borderColor: inputBorderColor,
           ...otherStyles,
@@ -44,7 +44,9 @@ const Button = ({
         callback();
       }}
     >
-      <Text style={[styles.buttonText, { color: inputFontColor || "white" }]}>
+      <Text
+        style={[styles.buttonText, { color: inputFontColor || color.white }]}
+      >
         {text}
       </Text>
     </TouchableOpacity>

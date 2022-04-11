@@ -1,6 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { color } from "../style/index";
 
 type Props = {
   size: number;
@@ -14,7 +15,7 @@ export const UpvoteArrowView = (props: Props) => {
       style={[
         styles.container,
         {
-          backgroundColor: props.color || "white",
+          backgroundColor: props.color || color.white,
           padding: props.padding || 1,
         },
       ]}

@@ -3,6 +3,7 @@ import React from "react";
 import { StatisticsData } from "../model";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { color } from "../style";
 
 const ProjectDetails = ({
   project_url,
@@ -47,7 +48,7 @@ const ProjectDetails = ({
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: "#F8F9FA",
+    backgroundColor: color.lighterGrey,
     paddingHorizontal: "3%",
     borderRadius: 3,
     marginVertical: "2%",
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     maxWidth: "45%",
     height: 40,
     padding: 4,
-    backgroundColor: "#1484D7",
+    backgroundColor: color.primary,
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
   },
   urlText: {
     fontSize: 15,
-    color: "white",
+    color: color.white,
     fontWeight: "700",
     textAlign: "center",
   },
