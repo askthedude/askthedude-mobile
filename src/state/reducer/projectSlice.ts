@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { CompleteProjectData } from "../../commons/model/index";
+import { CompleteProjectData, StatisticsData } from "../../commons/model/index";
 import { requestApi } from "../../commons/api/index";
 
 export interface ProjectState {
@@ -28,6 +28,38 @@ export const getProjectById = createAsyncThunk(
   }
 );
 
+export const incrementSeenFrequencyObject = (
+  projectId: number
+): StatisticsData => {
+  return {
+    id: projectId,
+    seen_frequency: 1,
+    number_of_interested: 0,
+    subscriptions: 0,
+  };
+};
+
+export const updateProjectStats = createAsyncThunk(
+  "project/updateStats",
+  async (updateProjectStatistics: StatisticsData, thunkAPI) => {
+    try {
+      const response: any = await requestApi(
+        `api/project/${updateProjectStatistics.id}/stats`,
+        "POST",
+        {
+          delta_seen_frequency: updateProjectStatistics.seen_frequency,
+          delta_number_of_interested:
+            updateProjectStatistics.number_of_interested,
+          delta_subscriptions: updateProjectStatistics.subscriptions,
+        }
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
+
 export const projectSlice = createSlice({
   name: "project",
   initialState,
@@ -45,6 +77,11 @@ export const projectSlice = createSlice({
       .addCase(getProjectById.pending, (state, action) => {
         state.project = undefined;
         state.loading = "pending";
+      })
+      .addCase(updateProjectStats.fulfilled, (state, action) => {
+        if (state.project) {
+          state.project.stats.seen_frequency = action.payload.seen_frequency;
+        }
       });
   },
 });

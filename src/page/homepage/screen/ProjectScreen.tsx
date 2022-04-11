@@ -7,7 +7,11 @@ import UserInfoView from "../../../commons/component/UserInfoView";
 import ProjectDetails from "../../../commons/component/ProjectDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
-import { getProjectById } from "../../../state/reducer/projectSlice";
+import {
+  getProjectById,
+  incrementSeenFrequencyObject,
+  updateProjectStats,
+} from "../../../state/reducer/projectSlice";
 import Loading from "../../../commons/component/LoadingView";
 
 export const ProjectScreen = () => {
@@ -16,8 +20,15 @@ export const ProjectScreen = () => {
   const dispatch = useDispatch();
   const { project, loading } = useSelector((state: RootState) => state.project);
 
+  const apiCommunication = async () => {
+    await Promise.all([dispatch(getProjectById(projectId))]);
+    await Promise.all([
+      dispatch(updateProjectStats(incrementSeenFrequencyObject(projectId))),
+    ]);
+  };
+
   useEffect(() => {
-    dispatch(getProjectById(projectId));
+    apiCommunication();
   }, [projectId]);
 
   return (

@@ -34,7 +34,7 @@ export const requestApi = async (
     };
     if (method !== "GET" && method !== "get") {
       requestBody.data = {
-        ...{ body },
+        ...body,
       };
     }
     const response = await axios(requestBody);
