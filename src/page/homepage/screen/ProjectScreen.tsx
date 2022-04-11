@@ -13,7 +13,7 @@ import {
   updateProjectStats,
 } from "../../../state/reducer/projectSlice";
 import Loading from "../../../commons/component/LoadingView";
-import { color } from "../../../commons/style";
+import { color, size } from "../../../commons/style";
 
 export const ProjectScreen = () => {
   const route: any = useRoute();
@@ -84,25 +84,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "space-between",
-    paddingHorizontal: "2%",
-    paddingVertical: "2%",
+    padding: size.padding.medium,
   },
-  title: { fontSize: 24, fontWeight: "500" },
+  title: { fontSize: size.font.big, fontWeight: "500" },
   authorContainer: {},
-  author: { fontSize: 12 },
+  author: { fontSize: size.font.small },
   middleContainer: {
     justifyContent: "center",
     alignItems: "flex-start",
     maxHeight: "50%",
-    paddingHorizontal: "2%",
+    paddingHorizontal: size.padding.medium,
   },
   descriptionContainer: {
     maxWidth: "70%",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    marginVertical: "1%",
+    marginVertical: size.margin.small,
   },
-  descriptionText: { fontSize: 17, fontWeight: "300" },
+  descriptionText: { fontSize: size.font.medium, fontWeight: "300" },
   detailsContainer: {},
   metadataContainer: {
     width: "100%",
@@ -110,15 +109,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     backgroundColor: color.lighterGrey,
-    borderRadius: 3,
-    paddingHorizontal: "3%",
+    borderRadius: size.borderRadius.xsmall,
+    paddingHorizontal: size.padding.medium,
   },
   tagsContainer: {
     alignItems: "flex-start",
     flexDirection: "row",
-    paddingVertical: "1%",
+    paddingVertical: size.padding.small,
   },
   bottomContainer: {
-    paddingHorizontal: "2%",
+    paddingHorizontal: size.padding.medium,
   },
 });

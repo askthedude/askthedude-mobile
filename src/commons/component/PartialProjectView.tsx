@@ -4,7 +4,7 @@ import { PartialProjectData } from "../model";
 import { TechnologyTagView } from "./TechnologyTagView";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import UpvotesView from "./UpvotesView";
-import { color } from "../style";
+import { color, size } from "../style";
 
 export const PartialProjectInfoView = ({
   project,
@@ -19,7 +19,9 @@ export const PartialProjectInfoView = ({
         <View style={styles.upperContainer}>
           <View style={styles.logoContainer}></View>
           <Text style={styles.title}>{project.title}</Text>
-          <Text style={styles.date}>Posted by: {project.authors[0] || ""}</Text>
+          <Text style={styles.author}>
+            Posted by: {project.authors[0] || ""}
+          </Text>
         </View>
         <View style={styles.middleContaner}>
           <Text style={styles.description}>{project.description || ""}</Text>
@@ -41,42 +43,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.white,
-    marginVertical: 5,
-    borderRadius: 5,
+    marginVertical: size.margin.small,
+    borderRadius: size.borderRadius.small,
   },
   upperContainer: {
     flex: 1,
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "flex-start",
-    paddingHorizontal: 5,
-    paddingTop: 5,
+    paddingHorizontal: size.padding.small,
+    paddingTop: size.padding.small,
   },
   title: {
-    fontSize: 18,
+    fontSize: size.font.medium,
     fontWeight: "700",
     maxWidth: "60%",
   },
-  date: {
-    fontSize: 12,
+  author: {
+    fontSize: size.font.small,
     fontWeight: "300",
-    marginHorizontal: 20,
+    marginHorizontal: size.margin.big,
   },
   logoContainer: {},
   middleContaner: {
     flex: 1,
     alignItems: "flex-start",
     maxWidth: "60%",
-    paddingVertical: 10,
-    paddingHorizontal: 5,
+    paddingVertical: size.padding.medium,
+    paddingHorizontal: size.padding.small,
   },
-  description: { fontSize: 14, fontWeight: "300" },
+  description: { fontSize: size.font.small, fontWeight: "300" },
   lowerContainer: {
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
     backgroundColor: color.lighterGrey,
-    padding: 5,
+    padding: size.padding.small,
   },
   tagsContainer: { flexDirection: "row", alignItems: "flex-start" },
 });

@@ -9,7 +9,7 @@ import { UserLogin, userLogin } from "../../../state/reducer/userSlice";
 import { RootState } from "../../../state/store";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../../../commons/component/LoadingView";
-import { color } from "../../../commons/style";
+import { color, size } from "../../../commons/style";
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -107,26 +107,26 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     backgroundColor: color.grey,
-    paddingVertical: 20,
+    paddingVertical: size.padding.big,
     justifyContent: "flex-start",
     alignItems: "center",
   },
   titleContainer: {},
   title: {
-    fontSize: 25,
+    fontSize: size.font.big,
     fontWeight: "700",
   },
   form: {
-    marginVertical: 30,
+    marginVertical: size.margin.xbig,
   },
   inputContainer: {
-    height: 40,
-    width: 250,
+    height: size.height.medium,
+    width: size.width.big,
     backgroundColor: color.white,
-    marginVertical: 15,
-    borderRadius: 5,
-    padding: 5,
-    borderWidth: 1,
+    marginVertical: size.margin.mediumplus,
+    borderRadius: size.borderRadius.small,
+    padding: size.padding.small,
+    borderWidth: size.borderWidth.small,
     borderColor: color.borderGrey,
   },
   username: {
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     width: "50%",
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: "8%",
+    marginVertical: size.margin.xbig,
   },
   signupContainer: {
     justifyContent: "center",

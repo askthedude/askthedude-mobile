@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { UpvoteArrowView } from "./UpvoteArrowView";
+import { size } from "../style";
 
 const UpvotesView = ({ upvotes }: { upvotes?: number }) => {
   return (
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   likesContainer: {
-    fontSize: 15,
+    fontSize: size.font.small,
     justifyContent: "center",
     alignItems: "center",
     fontWeight: "bold",

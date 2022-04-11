@@ -3,7 +3,7 @@ import React from "react";
 import { StatisticsData } from "../model";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { color } from "../style";
+import { color, size } from "../style";
 
 const ProjectDetails = ({
   project_url,
@@ -49,17 +49,17 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     backgroundColor: color.lighterGrey,
-    paddingHorizontal: "3%",
-    borderRadius: 3,
-    marginVertical: "2%",
-    paddingVertical: "2%",
+    paddingHorizontal: size.padding.medium,
+    borderRadius: size.borderRadius.xsmall,
+    marginVertical: size.margin.medium,
+    paddingVertical: size.padding.medium,
   },
   urlContainer: {
     maxWidth: "45%",
-    height: 40,
-    padding: 4,
+    height: size.height.medium,
+    padding: size.padding.small,
     backgroundColor: color.primary,
-    borderRadius: 30,
+    borderRadius: size.borderRadius.small,
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   date_container: {
-    marginVertical: 8,
+    marginVertical: size.margin.medium,
   },
   statisticsContainer: {
     flexDirection: "row",
@@ -77,12 +77,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   urlText: {
-    fontSize: 15,
+    fontSize: size.font.small,
     color: color.white,
     fontWeight: "700",
     textAlign: "center",
   },
-  seenFrequency: { fontSize: 17 },
+  seenFrequency: { fontSize: size.font.medium },
 });
 
 export default ProjectDetails;

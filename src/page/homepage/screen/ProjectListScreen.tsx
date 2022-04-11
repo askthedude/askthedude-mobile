@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterProjects } from "../../../state/reducer/projectListSlice";
 import { RootState } from "../../../state/store";
 import Loading from "../../../commons/component/LoadingView";
-import { color } from "../../../commons/style";
+import { color, size } from "../../../commons/style";
 
 export const ProjectListScreen = () => {
   const navigation: any = useNavigation();
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     backgroundColor: color.grey,
-    padding: 5,
+    padding: size.padding.small,
   },
 });

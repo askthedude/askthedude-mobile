@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { TechnologyData } from "../model";
-import { color } from "../style";
+import { color, size } from "../style";
 
 export const TechnologyTagView = ({
   techonolgy,
@@ -24,14 +24,14 @@ export const TechnologyTagView = ({
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 5,
-    padding: 5,
-    marginRight: 5,
-    marginVertical: 3,
+    borderRadius: size.borderRadius.small,
+    padding: size.padding.small,
+    marginRight: size.margin.small,
+    marginVertical: size.margin.small,
     justifyContent: "center",
     alignItems: "center",
     borderColor: color.borderGrey,
     borderWidth: 1,
   },
-  text: { color: "black", fontSize: 13, fontWeight: "700" },
+  text: { color: "black", fontSize: size.font.small, fontWeight: "700" },
 });
