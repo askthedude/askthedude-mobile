@@ -9,9 +9,9 @@ const ProjectDetails = ({
   start_date,
   statistics,
 }: {
-  project_url: string;
-  start_date: string;
-  statistics: StatisticsData;
+  project_url?: string;
+  start_date?: string;
+  statistics?: StatisticsData;
 }) => {
   const visitUrl = async (url: string) => {
     if (await Linking.canOpenURL(url)) {
@@ -26,7 +26,7 @@ const ProjectDetails = ({
       <TouchableOpacity
         style={styles.urlContainer}
         onPress={() => {
-          visitUrl(project_url);
+          visitUrl(project_url || "Project Url not specified");
         }}
       >
         <Text style={styles.urlText}>Visit project page</Text>
@@ -37,7 +37,7 @@ const ProjectDetails = ({
         </View>
         <View style={styles.statisticsContainer}>
           <Ionicons name="eye-outline" size={24} />
-          <Text style={styles.seenFrequency}>{statistics.seen_frequency}</Text>
+          <Text style={styles.seenFrequency}>{statistics?.seen_frequency}</Text>
         </View>
       </View>
     </View>

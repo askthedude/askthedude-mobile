@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { UpvoteArrowView } from "./UpvoteArrowView";
 
-const UpvotesView = ({ upvotes }: { upvotes: number }) => {
+const UpvotesView = ({ upvotes }: { upvotes?: number }) => {
   return (
     <View style={styles.container}>
       <View style={{ marginRight: 5 }}>

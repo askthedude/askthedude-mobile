@@ -2,7 +2,6 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { PartialProjectData } from "../model";
 import { TechnologyTagView } from "./TechnologyTagView";
-import { UpvoteArrowView } from "./UpvoteArrowView";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import UpvotesView from "./UpvotesView";
 

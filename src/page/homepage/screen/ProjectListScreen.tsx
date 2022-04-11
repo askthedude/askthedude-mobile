@@ -4,7 +4,7 @@ import { PartialProjectData } from "../../../commons/model";
 import { PartialProjectInfoView } from "../../../commons/component/PartialProjectView";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
-import { filterProjects } from "../../../state/reducer/projectsSlice";
+import { filterProjects } from "../../../state/reducer/projectListSlice";
 import { RootState } from "../../../state/store";
 import Loading from "../../../commons/component/LoadingView";
 
@@ -20,7 +20,7 @@ export const ProjectListScreen = () => {
 
   useEffect(() => {
     dispatch(filterProjects({}));
-  }, []);
+  }, [navigation]);
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>

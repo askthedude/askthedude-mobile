@@ -2,17 +2,21 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { UserData } from "../model";
 
-const UserInfoView = ({ user }: { user: UserData }) => {
+const UserInfoView = ({ user }: { user?: UserData }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{"About author"}</Text>
 
       <View style={styles.usernameContainer}>
-        <Text style={styles.username}>Username: {user.username}</Text>
+        <Text style={styles.username}>
+          Username: {user?.username || "user username not specified"}
+        </Text>
       </View>
 
       <View style={styles.emailContainer}>
-        <Text style={styles.username}>Email: {user.email}</Text>
+        <Text style={styles.username}>
+          Email: {user?.email || "User email not specified"}
+        </Text>
       </View>
     </View>
   );

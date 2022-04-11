@@ -25,16 +25,19 @@ export const requestApi = async (
   body: any
 ): Promise<any> => {
   if (validateInputMethod(method)) {
-    const response = await axios({
+    const requestBody: any = {
       ...{
         url: `/${url}`,
         baseURL: BASE_URL,
         method: method,
       },
-      data: {
+    };
+    if (method !== "GET" && method !== "get") {
+      requestBody.data = {
         ...{ body },
-      },
-    });
+      };
+    }
+    const response = await axios(requestBody);
     return response;
   } else {
     throw Error("Invalid HTTP method specified.");

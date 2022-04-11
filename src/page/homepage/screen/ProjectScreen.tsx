@@ -1,101 +1,72 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import React, { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
-import { CompleteProjectData } from "../../../commons/model";
 import { TechnologyTagView } from "../../../commons/component/TechnologyTagView";
 import UpvotesView from "../../../commons/component/UpvotesView";
 import UserInfoView from "../../../commons/component/UserInfoView";
 import ProjectDetails from "../../../commons/component/ProjectDetails";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../state/store";
+import { getProjectById } from "../../../state/reducer/projectSlice";
+import Loading from "../../../commons/component/LoadingView";
 
 export const ProjectScreen = () => {
-  const project: CompleteProjectData = {
-    id: 1,
-    title: "Spring context",
-    description: "wazaasdfasdfasdfasdjfajskdnfkasjdfnakjsfnakjsdnfakjsnfap",
-    stars: 5,
-    is_active: true,
-    url: "www.someurl.com",
-    start_date: "some start date",
-    technologies: [
-      {
-        id: 1,
-        title: "Java",
-        is_hot: true,
-        resource_url: "some url to resource",
-      },
-      {
-        id: 2,
-        title: "Spring",
-        is_hot: true,
-        resource_url: "some url to resource",
-      },
-      {
-        id: 3,
-        title: "Spring",
-        is_hot: true,
-        resource_url: "some url to resource",
-      },
-    ],
-    users: [
-      {
-        id: 1,
-        username: "nikasakana",
-        email: "email@email.com",
-        github_url: "github url .com",
-        name: "nika",
-        is_active: true,
-        linkedin_url: "some url to linkedin",
-      },
-    ],
-    stats: {
-      id: 1,
-      number_of_interested: 213,
-      subscriptions: 123,
-      seen_frequency: 321,
-    },
-  };
-
   const route: any = useRoute();
-  // use paramter below to fetch data via HTTP API
   const { projectId } = route.params;
-  return (
-    <View style={styles.container}>
-      <View style={styles.upperContainer}>
-        <Text style={styles.title}>{project.title}</Text>
-        <Text style={styles.author}>
-          Posted by: {project.users[0].username}
-        </Text>
-      </View>
+  const dispatch = useDispatch();
+  const { project, loading } = useSelector((state: RootState) => state.project);
 
-      <View style={styles.middleContainer}>
-        <View style={styles.descriptionContainer}>
-          <Text style={styles.descriptionText}>{project.description}</Text>
-        </View>
-        <View style={styles.metadataContainer}>
-          <View style={styles.tagsContainer}>
-            {project.technologies.map((tech) => (
-              <TechnologyTagView key={tech.id} techonolgy={tech} />
-            ))}
+  useEffect(() => {
+    dispatch(getProjectById(projectId));
+  }, [projectId]);
+
+  return (
+    <SafeAreaView style={styles.safeAreaViewcontainer}>
+      {loading === "pending" ? (
+        <Loading />
+      ) : (
+        <View style={styles.container}>
+          <View style={styles.upperContainer}>
+            <Text style={styles.title}>{project?.title}</Text>
+            <Text style={styles.author}>
+              Posted by: {project?.users[0].username}
+            </Text>
           </View>
-          <UpvotesView upvotes={project.stars} />
+
+          <View style={styles.middleContainer}>
+            <View style={styles.descriptionContainer}>
+              <Text style={styles.descriptionText}>{project?.description}</Text>
+            </View>
+            <View style={styles.metadataContainer}>
+              <View style={styles.tagsContainer}>
+                {project?.technologies.map((tech) => (
+                  <TechnologyTagView key={tech.id} techonolgy={tech} />
+                ))}
+              </View>
+              <UpvotesView upvotes={project?.stars} />
+            </View>
+            <ProjectDetails
+              project_url={project?.url}
+              start_date={project?.start_date}
+              statistics={project?.stats}
+            />
+          </View>
+          <View style={styles.bottomContainer}>
+            <UserInfoView user={project?.users[0]} />
+          </View>
         </View>
-        <ProjectDetails
-          project_url={project.url}
-          start_date={project.start_date}
-          statistics={project.stats}
-        />
-      </View>
-      <View style={styles.bottomContainer}>
-        <UserInfoView user={project.users[0]} />
-      </View>
-    </View>
+      )}
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  safeAreaViewcontainer: {
     flex: 1,
     backgroundColor: "#DAE0E6",
+  },
+  container: {
+    flex: 1,
   },
   upperContainer: {
     flexDirection: "row",

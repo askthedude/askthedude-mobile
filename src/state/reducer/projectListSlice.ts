@@ -2,12 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { PartialProjectData } from "../../commons/model/index";
 import { requestApi } from "../../commons/api/index";
 
-export interface ProjectsState {
+export interface ProjectListState {
   loading: "idle" | "pending" | "succeeded" | "failed";
   projects: PartialProjectData[];
 }
 
-const initialState: ProjectsState = {
+const initialState: ProjectListState = {
   loading: "idle",
   projects: [],
 };
@@ -28,7 +28,7 @@ export const filterProjects = createAsyncThunk(
   }
 );
 
-export const projectsSlice = createSlice({
+export const projectListSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {},
