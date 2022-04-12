@@ -37,7 +37,7 @@ const ProjectDetails = ({
           <Text>Start date: {start_date}</Text>
         </View>
         <View style={styles.statisticsContainer}>
-          <Ionicons name="eye-outline" size={24} />
+          <Ionicons name="eye-outline" size={size.icon.small} />
           <Text style={styles.seenFrequency}>{statistics?.seen_frequency}</Text>
         </View>
       </View>
@@ -49,15 +49,15 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     backgroundColor: color.lighterGrey,
-    paddingHorizontal: size.padding.medium,
+    paddingHorizontal: size.padding.small,
     borderRadius: size.borderRadius.xsmall,
     marginVertical: size.margin.medium,
-    paddingVertical: size.padding.medium,
+    paddingVertical: size.padding.small,
   },
   urlContainer: {
     maxWidth: "45%",
     height: size.height.medium,
-    padding: size.padding.small,
+    padding: size.padding.xsmall,
     backgroundColor: color.primary,
     borderRadius: size.borderRadius.small,
     justifyContent: "center",

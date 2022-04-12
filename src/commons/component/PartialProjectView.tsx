@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "flex-start",
-    paddingHorizontal: size.padding.small,
-    paddingTop: size.padding.small,
+    paddingHorizontal: size.padding.xsmall,
+    paddingTop: size.padding.xsmall,
   },
   title: {
     fontSize: size.font.medium,
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-start",
     maxWidth: "60%",
-    paddingVertical: size.padding.medium,
-    paddingHorizontal: size.padding.small,
+    paddingVertical: size.padding.small,
+    paddingHorizontal: size.padding.xsmall,
   },
   description: { fontSize: size.font.small, fontWeight: "300" },
   lowerContainer: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     backgroundColor: color.lighterGrey,
-    padding: size.padding.small,
+    padding: size.padding.xsmall,
   },
   tagsContainer: { flexDirection: "row", alignItems: "flex-start" },
 });

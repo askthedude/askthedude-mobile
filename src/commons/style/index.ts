@@ -1,10 +1,10 @@
 export const color = {
   primary: "#1484D7",
-  grey: "#DAE0E6",
-  lighterGrey: "#F8F9FA",
+  backgroundPink: "#E9ECFF",
+  lighterGrey: "#FAFAFB",
   borderGrey: "#DDDDDD",
   white: "white",
-  black: "black",
+  black: "#0D0B22",
 };
 
 export const size = {
@@ -21,9 +21,10 @@ export const size = {
     xbig: 30,
   },
   padding: {
-    small: 5,
-    medium: 10,
-    big: 20,
+    xsmall: 5,
+    small: 8,
+    medium: 18,
+    big: 25,
   },
   borderRadius: {
     xsmall: 3,
@@ -33,11 +34,18 @@ export const size = {
   },
   height: {
     medium: 40,
+    big: 50,
   },
   width: {
     big: 250,
   },
   borderWidth: {
     small: 1,
+  },
+  icon: {
+    small: 24,
+    medium: 35,
+    big: 50,
+    xbig: 70,
   },
 };

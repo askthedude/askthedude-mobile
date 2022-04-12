@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import React, { useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { TechnologyTagView } from "../../../commons/component/TechnologyTagView";
@@ -37,7 +37,7 @@ export const ProjectScreen = () => {
       {loading === "pending" ? (
         <Loading />
       ) : (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.upperContainer}>
             <Text style={styles.title}>{project?.title}</Text>
             <Text style={styles.author}>
@@ -66,7 +66,7 @@ export const ProjectScreen = () => {
           <View style={styles.bottomContainer}>
             <UserInfoView user={project?.users[0]} />
           </View>
-        </View>
+        </ScrollView>
       )}
     </SafeAreaView>
   );
@@ -75,7 +75,7 @@ export const ProjectScreen = () => {
 const styles = StyleSheet.create({
   safeAreaViewcontainer: {
     flex: 1,
-    backgroundColor: color.grey,
+    backgroundColor: color.backgroundPink,
   },
   container: {
     flex: 1,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "space-between",
-    padding: size.padding.medium,
+    padding: size.padding.small,
   },
   title: { fontSize: size.font.big, fontWeight: "500" },
   authorContainer: {},
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "flex-start",
     maxHeight: "50%",
-    paddingHorizontal: size.padding.medium,
+    paddingHorizontal: size.padding.small,
   },
   descriptionContainer: {
     maxWidth: "70%",
@@ -110,14 +110,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: color.lighterGrey,
     borderRadius: size.borderRadius.xsmall,
-    paddingHorizontal: size.padding.medium,
+    paddingHorizontal: size.padding.small,
   },
   tagsContainer: {
     alignItems: "flex-start",
     flexDirection: "row",
-    paddingVertical: size.padding.small,
+    paddingVertical: size.padding.xsmall,
   },
   bottomContainer: {
-    paddingHorizontal: size.padding.medium,
+    paddingHorizontal: size.padding.small,
   },
 });

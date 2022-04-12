@@ -41,7 +41,7 @@ export const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Ionicons name={"person-circle"} size={80} />
+        <Ionicons name={"person-circle"} size={size.icon.xbig} />
       </View>
       <View style={styles.form}>
         <View style={styles.inputContainer}>
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    backgroundColor: color.grey,
-    paddingVertical: size.padding.big,
+    backgroundColor: color.backgroundPink,
+    paddingVertical: size.padding.medium,
     justifyContent: "flex-start",
     alignItems: "center",
   },
@@ -120,14 +120,17 @@ const styles = StyleSheet.create({
     marginVertical: size.margin.xbig,
   },
   inputContainer: {
-    height: size.height.medium,
+    height: size.height.big,
     width: size.width.big,
     backgroundColor: color.white,
     marginVertical: size.margin.mediumplus,
     borderRadius: size.borderRadius.small,
-    padding: size.padding.small,
+    padding: size.padding.xsmall,
     borderWidth: size.borderWidth.small,
     borderColor: color.borderGrey,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
   },
   username: {
     flex: 1,

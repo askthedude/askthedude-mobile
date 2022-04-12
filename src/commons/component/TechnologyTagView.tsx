@@ -25,7 +25,7 @@ export const TechnologyTagView = ({
 const styles = StyleSheet.create({
   container: {
     borderRadius: size.borderRadius.small,
-    padding: size.padding.small,
+    padding: size.padding.xsmall,
     marginRight: size.margin.small,
     marginVertical: size.margin.small,
     justifyContent: "center",

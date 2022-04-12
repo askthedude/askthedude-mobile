@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomePage } from "../page/homepage/index";
 import { ProfilePage } from "../page/profile/index";
 import { Notifications } from "../page/notifications/index";
+import { size } from "../commons/style";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,7 +17,9 @@ export const MainNavigation = () => {
           name="Home"
           component={HomePage}
           options={{
-            tabBarIcon: ({}) => <Ionicons name="home-outline" size={25} />,
+            tabBarIcon: ({}) => (
+              <Ionicons name="home-outline" size={size.icon.small} />
+            ),
             headerShown: false,
           }}
         />
@@ -24,7 +27,9 @@ export const MainNavigation = () => {
           name="MainProfile"
           component={ProfilePage}
           options={{
-            tabBarIcon: ({}) => <Ionicons name="person-outline" size={25} />,
+            tabBarIcon: ({}) => (
+              <Ionicons name="person-outline" size={size.icon.small} />
+            ),
             headerShown: false,
           }}
         />
@@ -33,7 +38,7 @@ export const MainNavigation = () => {
           component={Notifications}
           options={{
             tabBarIcon: ({}) => (
-              <Ionicons name="notifications-outline" size={25} />
+              <Ionicons name="notifications-outline" size={size.icon.small} />
             ),
             headerShown: false,
           }}

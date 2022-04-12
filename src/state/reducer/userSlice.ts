@@ -34,7 +34,12 @@ export const userLogin = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    signout(state) {
+      state.user = undefined;
+      state.token = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(userLogin.fulfilled, (state, action) => {
