@@ -96,11 +96,12 @@ const styles = StyleSheet.create({
     padding: size.padding.small,
   },
   backContainer: {
-    flex: 1,
     justifyContent: "flex-start",
   },
   titleContainer: {
-    flex: 4,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     fontSize: size.font.big,

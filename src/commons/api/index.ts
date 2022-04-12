@@ -2,7 +2,7 @@ import axios, { Method } from "axios";
 
 const PROTOCOL = "http";
 
-const SERVER_URL = "localhost:8084";
+const SERVER_URL = "192.168.100.4:8084";
 
 const BASE_URL = `${PROTOCOL}://${SERVER_URL}`;
 
