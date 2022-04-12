@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Divider } from "../../../commons/component/Divider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Button from "../../../commons/component/Button";

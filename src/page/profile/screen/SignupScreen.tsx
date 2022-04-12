@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 import { color, size } from "../../../commons/style";
 import Input from "../../../commons/component/Input";
 import Button from "../../../commons/component/Button";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { UserSignup, userSignup } from "../../../state/reducer/userSlice";
-import { RootState } from "../../../state/store";
-import { useNavigation } from "@react-navigation/native";
-import { CommonActions } from "@react-navigation/native";
+import { validateEmail } from "../../../commons/utils/validation";
 
 const SignupScreen = () => {
   const [inputs, setInputs] = useState({
@@ -22,14 +20,6 @@ const SignupScreen = () => {
   });
 
   const dispatch = useDispatch();
-  const navigation: any = useNavigation();
-  const { user } = useSelector((state: RootState) => state.user);
-
-  useEffect(() => {
-    if (user !== undefined) {
-      navigation.replace("Profile", {});
-    }
-  }, []);
 
   const signup = (inputs: any) => {
     let valid = true;
@@ -57,8 +47,8 @@ const SignupScreen = () => {
     } else {
       setInputs((prev) => ({ ...prev, password_error: "" }));
     }
-    if (inputs.email === "") {
-      setInputs((prev) => ({ ...prev, email_error: "Please input Email" }));
+    if (inputs.email === "" || !validateEmail(inputs.email)) {
+      setInputs((prev) => ({ ...prev, email_error: "Invalid Email" }));
       valid = false;
     } else {
       setInputs((prev) => ({ ...prev, email_error: "" }));
