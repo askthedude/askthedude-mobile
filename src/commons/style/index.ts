@@ -5,6 +5,7 @@ export const color = {
   borderGrey: "#DDDDDD",
   white: "white",
   black: "#0D0B22",
+  error: "#ff5555",
 };
 
 export const size = {
@@ -41,6 +42,7 @@ export const size = {
   },
   borderWidth: {
     small: 1,
+    medium: 2,
   },
   icon: {
     small: 24,

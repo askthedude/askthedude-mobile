@@ -1,8 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { RootState } from "../../../state/store";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
 import { color, size } from "../../../commons/style";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Button from "../../../commons/component/Button";
@@ -11,12 +10,7 @@ import { userSlice } from "../../../state/reducer/userSlice";
 export const ProfileScreen = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
-  const navigation: any = useNavigation();
-  useEffect(() => {
-    if (user === undefined) {
-      navigation.replace("Login", {});
-    }
-  }, [user]);
+
   return (
     <View style={styles.container}>
       {user === undefined ? null : (

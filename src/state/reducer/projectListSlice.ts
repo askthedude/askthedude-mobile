@@ -23,7 +23,7 @@ export const filterProjects = createAsyncThunk(
       );
       return response.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue("Opps there seems to be an error");
+      return thunkAPI.rejectWithValue(err);
     }
   }
 );

@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { TextInput } from "react-native-gesture-handler";
 import { Divider } from "../../../commons/component/Divider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Button from "../../../commons/component/Button";
@@ -10,13 +9,20 @@ import { RootState } from "../../../state/store";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
+import Input from "../../../commons/component/Input";
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
   const navigation: any = useNavigation();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const { user, loading } = useSelector((state: RootState) => state.user);
+  const [{ username, uerror }, setUsername] = useState({
+    username: "",
+    uerror: "",
+  });
+  const [{ password, perror }, setPassword] = useState({
+    password: "",
+    perror: "",
+  });
+  const { loading } = useSelector((state: RootState) => state.user);
 
   const signin = () => {
     if (username && username !== "" && password && password !== "") {
@@ -27,16 +33,23 @@ export const LoginScreen = () => {
         password: trimmedPassword,
       };
       dispatch(userLogin(data));
+    } else {
+      if (!username || username === "") {
+        setUsername((prev) => ({ ...prev, uerror: "Please fill in username" }));
+      } else {
+        setUsername((prev) => ({ ...prev, uerror: "" }));
+      }
+      if (!password || password === "") {
+        setPassword((prev) => ({ ...prev, perror: "Please fill in username" }));
+      } else {
+        setPassword((prev) => ({ ...prev, perror: "" }));
+      }
     }
   };
 
-  useEffect(() => {
-    if (user !== undefined) {
-      navigation.replace("Profile", {});
-    }
-  }, [user]);
-
-  const signup = () => {};
+  const signup = () => {
+    navigation.navigate("Signup", {});
+  };
 
   return (
     <View style={styles.container}>
@@ -44,26 +57,20 @@ export const LoginScreen = () => {
         <Ionicons name={"person-circle"} size={size.icon.xbig} />
       </View>
       <View style={styles.form}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Username"
-            placeholderTextColor={color.black}
-            style={styles.username}
-            onChangeText={(txt) => {
-              setUsername(txt);
-            }}
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Password"
-            placeholderTextColor={color.black}
-            style={styles.password}
-            onChangeText={(txt) => {
-              setPassword(txt);
-            }}
-          />
-        </View>
+        <Input
+          callback={(txt) =>
+            setUsername((prev) => ({ ...prev, username: txt }))
+          }
+          placeholder={"Username"}
+          errorMessage={uerror}
+        />
+        <Input
+          callback={(txt) =>
+            setPassword((prev) => ({ ...prev, password: txt }))
+          }
+          placeholder={"Password"}
+          errorMessage={perror}
+        />
       </View>
       {loading === "pending" ? (
         <Loading />
@@ -105,7 +112,6 @@ export const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
     backgroundColor: color.backgroundPink,
     paddingVertical: size.padding.medium,
     justifyContent: "flex-start",
@@ -118,25 +124,6 @@ const styles = StyleSheet.create({
   },
   form: {
     marginVertical: size.margin.xbig,
-  },
-  inputContainer: {
-    height: size.height.big,
-    width: size.width.big,
-    backgroundColor: color.white,
-    marginVertical: size.margin.mediumplus,
-    borderRadius: size.borderRadius.small,
-    padding: size.padding.xsmall,
-    borderWidth: size.borderWidth.small,
-    borderColor: color.borderGrey,
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-  },
-  username: {
-    flex: 1,
-  },
-  password: {
-    flex: 1,
   },
   dividerContainer: {
     width: "50%",
