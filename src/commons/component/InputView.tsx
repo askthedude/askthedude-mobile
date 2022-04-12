@@ -3,11 +3,13 @@ import React from "react";
 import { color, size } from "../style";
 
 const Input = ({
+  containerStyle = {},
   inputStyle = {},
   placeholder = "input text",
   callback = () => {},
   errorMessage = "",
 }: {
+  containerStyle?: any;
   inputStyle?: any;
   placeholder: string;
   callback: (txt: string) => void;
@@ -18,12 +20,13 @@ const Input = ({
       style={[
         styles.container,
         { borderColor: errorMessage !== "" ? color.error : color.borderGrey },
+        containerStyle,
       ]}
     >
       <TextInput
         placeholder={placeholder}
         placeholderTextColor={color.black}
-        style={[inputStyle, styles.textInputArea]}
+        style={[styles.textInputArea, inputStyle]}
         onChangeText={(txt) => {
           callback(txt);
         }}

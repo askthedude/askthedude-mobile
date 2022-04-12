@@ -6,6 +6,7 @@ import { HomePage } from "../page/homepage/index";
 import { ProfilePage } from "../page/profile/index";
 import { Notifications } from "../page/notifications/index";
 import { size } from "../commons/style";
+import { AddProject } from "../page/addProject";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,7 @@ export const MainNavigation = () => {
           component={HomePage}
           options={{
             tabBarIcon: ({}) => (
-              <Ionicons name="home-outline" size={size.icon.small} />
+              <Ionicons name="search-outline" size={size.icon.small} />
             ),
             headerShown: false,
           }}
@@ -29,6 +30,16 @@ export const MainNavigation = () => {
           options={{
             tabBarIcon: ({}) => (
               <Ionicons name="person-outline" size={size.icon.small} />
+            ),
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="AddProject"
+          component={AddProject}
+          options={{
+            tabBarIcon: ({}) => (
+              <Ionicons name="add-circle-outline" size={size.icon.small} />
             ),
             headerShown: false,
           }}

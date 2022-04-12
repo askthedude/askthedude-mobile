@@ -36,11 +36,14 @@ export const size = {
     xbig: 30,
   },
   height: {
+    xsmall: 20,
+    small: 35,
     medium: 40,
     big: 50,
   },
   width: {
     big: 250,
+    xbig: 360,
   },
   borderWidth: {
     small: 1,

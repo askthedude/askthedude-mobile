@@ -1,12 +1,12 @@
-import { StyleSheet, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { HomepageNavigator } from "./navigation/HomepageNavigator";
 import { color } from "../../commons/style";
+import { AddProjectNavigator } from "./navigation";
 
-export const HomePage = () => {
+export const AddProject = () => {
   return (
     <View style={styles.container}>
-      <HomepageNavigator />
+      <AddProjectNavigator />
     </View>
   );
 };
@@ -14,6 +14,7 @@ export const HomePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "space-between",
     backgroundColor: color.white,
   },
 });

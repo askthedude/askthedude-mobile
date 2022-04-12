@@ -42,6 +42,7 @@ export const PartialProjectInfoView = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width: size.width.xbig,
     backgroundColor: color.white,
     marginVertical: size.margin.small,
     borderRadius: size.borderRadius.small,

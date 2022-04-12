@@ -49,11 +49,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: color.backgroundPink,
   },
   container: {
     flex: 1,
-    width: "100%",
-    backgroundColor: color.backgroundPink,
     padding: size.padding.xsmall,
   },
 });
