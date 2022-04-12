@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.backgroundPink,
-    paddingVertical: size.padding.medium,
+    paddingVertical: size.padding.xxbig,
     justifyContent: "flex-start",
     alignItems: "center",
   },

@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { UserSignup, userSignup } from "../../../state/reducer/userSlice";
 import { validateEmail } from "../../../commons/utils/validation";
 import TitleView from "../../../commons/component/TitleView";
+import { HeaderBackButton } from "@react-navigation/elements";
+import { useNavigation } from "@react-navigation/native";
 
 const SignupScreen = () => {
   const [inputs, setInputs] = useState({
@@ -20,6 +22,7 @@ const SignupScreen = () => {
     email_error: "",
   });
 
+  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const signup = (inputs: any) => {
@@ -69,10 +72,15 @@ const SignupScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TitleView
-        text={"Find collaborators and projects to contribute to"}
-        inputStyle={styles.title}
-      />
+      <View style={styles.upperContainer}>
+        <View style={styles.backContainer}>
+          <HeaderBackButton onPress={() => navigation.goBack()} />
+        </View>
+        <TitleView
+          text={"Find collaborators and projects to contribute to"}
+          inputStyle={styles.titleContainer}
+        />
+      </View>
       <Input
         placeholder={"Name"}
         callback={(txt) => setInputs((prev) => ({ ...prev, name: txt }))}
@@ -107,13 +115,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.backgroundPink,
-    paddingVertical: size.padding.medium,
+    paddingVertical: size.padding.big,
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  title: {
-    marginVertical: size.margin.mediumplus,
-    paddingHorizontal: size.padding.big,
+  upperContainer: {
+    width: "100%",
+    flexDirection: "row",
+    padding: size.padding.small,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  backContainer: {
+    flex: 1,
+  },
+  titleContainer: {
+    flex: 10,
+    width: "100%",
+    padding: size.padding.small,
   },
 });
 

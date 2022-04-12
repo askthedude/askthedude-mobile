@@ -8,8 +8,20 @@ const Stack = createStackNavigator();
 export const HomepageNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="ProjectList">
-      <Stack.Screen name="ProjectList" component={ProjectListScreen} />
-      <Stack.Screen name="Project" component={ProjectScreen} />
+      <Stack.Screen
+        name="ProjectList"
+        component={ProjectListScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Project"
+        component={ProjectScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

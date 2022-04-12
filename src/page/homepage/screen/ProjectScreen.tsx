@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useEffect } from "react";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { TechnologyTagView } from "../../../commons/component/TechnologyTagView";
 import UpvotesView from "../../../commons/component/UpvotesView";
 import UserInfoView from "../../../commons/component/UserInfoView";
@@ -14,12 +14,15 @@ import {
 } from "../../../state/reducer/projectSlice";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { HeaderBackButton } from "@react-navigation/elements";
 
 export const ProjectScreen = () => {
   const route: any = useRoute();
   const { projectId } = route.params;
   const dispatch = useDispatch();
   const { project, loading } = useSelector((state: RootState) => state.project);
+  const navigation = useNavigation();
 
   const apiCommunication = async () => {
     await Promise.all([dispatch(getProjectById(projectId))]);
@@ -39,13 +42,18 @@ export const ProjectScreen = () => {
       ) : (
         <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.upperContainer}>
-            <Text style={styles.title}>{project?.title}</Text>
-            <Text style={styles.author}>
-              Posted by: {project?.users[0].username}
-            </Text>
+            <View style={styles.backContainer}>
+              <HeaderBackButton onPress={() => navigation.goBack()} />
+            </View>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>{project?.title}</Text>
+            </View>
           </View>
 
           <View style={styles.middleContainer}>
+            <Text style={styles.author}>
+              Posted by: {project?.users[0].username}
+            </Text>
             <View style={styles.descriptionContainer}>
               <Text style={styles.descriptionText}>{project?.description}</Text>
             </View>
@@ -81,12 +89,23 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   upperContainer: {
+    width: "100%",
     flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "space-between",
+    alignItems: "center",
+    justifyContent: "center",
     padding: size.padding.small,
   },
-  title: { fontSize: size.font.big, fontWeight: "500" },
+  backContainer: {
+    flex: 1,
+    justifyContent: "flex-start",
+  },
+  titleContainer: {
+    flex: 4,
+  },
+  title: {
+    fontSize: size.font.big,
+    fontWeight: "500",
+  },
   authorContainer: {},
   author: { fontSize: size.font.small },
   middleContainer: {

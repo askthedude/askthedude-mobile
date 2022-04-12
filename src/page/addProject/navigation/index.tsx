@@ -6,11 +6,12 @@ const Stack = createStackNavigator();
 
 export const AddProjectNavigator = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="AddProject"
-      screenOptions={{ presentation: "modal" }}
-    >
-      <Stack.Screen name="AddProjectScreen" component={AddProjectScreen} />
+    <Stack.Navigator initialRouteName="AddProject">
+      <Stack.Screen
+        name="AddProjectScreen"
+        component={AddProjectScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };

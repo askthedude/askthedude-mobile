@@ -1,4 +1,4 @@
-import { StyleSheet, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import React, { useEffect } from "react";
 import { PartialProjectData } from "../../../commons/model";
 import { PartialProjectInfoView } from "../../../commons/component/PartialProjectView";
@@ -8,6 +8,7 @@ import { filterProjects } from "../../../state/reducer/projectListSlice";
 import { RootState } from "../../../state/store";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const ProjectListScreen = () => {
   const navigation: any = useNavigation();
