@@ -4,7 +4,7 @@ import { RootState } from "../../../state/store";
 import { useDispatch, useSelector } from "react-redux";
 import { color, size } from "../../../commons/style";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Button from "../../../commons/component/Button";
+import Button from "../../../commons/component/ButtonView";
 import { userSlice } from "../../../state/reducer/userSlice";
 
 export const ProfileScreen = () => {

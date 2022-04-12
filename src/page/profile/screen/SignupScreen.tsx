@@ -1,11 +1,12 @@
 import { View, StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { color, size } from "../../../commons/style";
-import Input from "../../../commons/component/Input";
-import Button from "../../../commons/component/Button";
+import Input from "../../../commons/component/InputView";
+import Button from "../../../commons/component/ButtonView";
 import { useDispatch } from "react-redux";
 import { UserSignup, userSignup } from "../../../state/reducer/userSlice";
 import { validateEmail } from "../../../commons/utils/validation";
+import TitleView from "../../../commons/component/TitleView";
 
 const SignupScreen = () => {
   const [inputs, setInputs] = useState({
@@ -68,6 +69,10 @@ const SignupScreen = () => {
 
   return (
     <View style={styles.container}>
+      <TitleView
+        text={"Find collaborators and projects to contribute to"}
+        inputStyle={styles.title}
+      />
       <Input
         placeholder={"Name"}
         callback={(txt) => setInputs((prev) => ({ ...prev, name: txt }))}
@@ -105,6 +110,10 @@ const styles = StyleSheet.create({
     paddingVertical: size.padding.medium,
     justifyContent: "flex-start",
     alignItems: "center",
+  },
+  title: {
+    marginVertical: size.margin.mediumplus,
+    paddingHorizontal: size.padding.big,
   },
 });
 

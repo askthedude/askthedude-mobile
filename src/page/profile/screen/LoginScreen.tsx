@@ -1,15 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import { Divider } from "../../../commons/component/Divider";
+import { Divider } from "../../../commons/component/DividerView";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Button from "../../../commons/component/Button";
+import Button from "../../../commons/component/ButtonView";
 import { useDispatch, useSelector } from "react-redux";
 import { UserLogin, userLogin } from "../../../state/reducer/userSlice";
 import { RootState } from "../../../state/store";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
-import Input from "../../../commons/component/Input";
+import Input from "../../../commons/component/InputView";
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();

@@ -5,6 +5,7 @@ export const color = {
   borderGrey: "#DDDDDD",
   white: "white",
   black: "#0D0B22",
+  darkblue: "#00124A",
   error: "#ff5555",
 };
 
@@ -26,6 +27,7 @@ export const size = {
     small: 8,
     medium: 18,
     big: 25,
+    xbig: 30,
   },
   borderRadius: {
     xsmall: 3,
