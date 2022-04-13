@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
 import Input from "../../../commons/component/InputView";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const LoginScreen = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ export const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
         <Ionicons name={"person-circle"} size={size.icon.xbig} />
       </View>
@@ -105,7 +106,7 @@ export const LoginScreen = () => {
           </View>
         </>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -113,11 +114,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.backgroundPink,
-    paddingVertical: size.padding.xxbig,
     justifyContent: "flex-start",
     alignItems: "center",
   },
-  titleContainer: {},
+  titleContainer: { paddingTop: size.padding.xbig },
   title: {
     fontSize: size.font.big,
     fontWeight: "700",

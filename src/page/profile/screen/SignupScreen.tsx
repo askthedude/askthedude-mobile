@@ -9,6 +9,7 @@ import { validateEmail } from "../../../commons/utils/validation";
 import TitleView from "../../../commons/component/TitleView";
 import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignupScreen = () => {
   const [inputs, setInputs] = useState({
@@ -71,7 +72,7 @@ const SignupScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.upperContainer}>
         <View style={styles.backContainer}>
           <HeaderBackButton onPress={() => navigation.goBack()} />
@@ -107,7 +108,7 @@ const SignupScreen = () => {
         }}
         text={"Sign up"}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -115,7 +116,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: color.backgroundPink,
-    paddingVertical: size.padding.big,
     justifyContent: "flex-start",
     alignItems: "center",
   },

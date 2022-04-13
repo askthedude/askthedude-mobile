@@ -29,7 +29,10 @@ export const ProjectListScreen = () => {
       {loading === "pending" ? (
         <Loading />
       ) : (
-        <ScrollView style={styles.container}>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
+        >
           {projects.map((project) => (
             <PartialProjectInfoView
               key={project.id}
@@ -48,12 +51,15 @@ export const ProjectListScreen = () => {
 const styles = StyleSheet.create({
   safeAreaViewcontainer: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     backgroundColor: color.backgroundPink,
+    width: "100%",
   },
   container: {
     flex: 1,
+    width: "100%",
     padding: size.padding.xsmall,
+  },
+  contentContainer: {
+    width: "100%",
   },
 });
