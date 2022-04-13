@@ -1,76 +1,17 @@
 import { View, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { color, size } from "../../../commons/style";
 import Input from "../../../commons/component/InputView";
 import Button from "../../../commons/component/ButtonView";
-import { useDispatch } from "react-redux";
-import { UserSignup, userSignup } from "../../../state/reducer/userSlice";
-import { validateEmail } from "../../../commons/utils/validation";
 import TitleView from "../../../commons/component/TitleView";
 import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSignUpInputs } from "../hook/signupHook";
 
 const SignupScreen = () => {
-  const [inputs, setInputs] = useState({
-    name: "",
-    name_error: "",
-    username: "",
-    username_error: "",
-    password: "",
-    password_error: "",
-    email: "",
-    email_error: "",
-  });
-
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-
-  const signup = (inputs: any) => {
-    let valid = true;
-    if (inputs.name === "") {
-      setInputs((prev) => ({ ...prev, name_error: "Please input Name" }));
-      valid = false;
-    } else {
-      setInputs((prev) => ({ ...prev, name_error: "" }));
-    }
-    if (inputs.username === "") {
-      setInputs((prev) => ({
-        ...prev,
-        username_error: "Please input Username",
-      }));
-      valid = false;
-    } else {
-      setInputs((prev) => ({ ...prev, username_error: "" }));
-    }
-    if (inputs.password === "") {
-      setInputs((prev) => ({
-        ...prev,
-        password_error: "Please input Password",
-      }));
-      valid = false;
-    } else {
-      setInputs((prev) => ({ ...prev, password_error: "" }));
-    }
-    if (inputs.email === "" || !validateEmail(inputs.email)) {
-      setInputs((prev) => ({ ...prev, email_error: "Invalid Email" }));
-      valid = false;
-    } else {
-      setInputs((prev) => ({ ...prev, email_error: "" }));
-    }
-    if (valid) {
-      const signupuser = {
-        name: inputs.name,
-        username: inputs.username,
-        password: inputs.password,
-        email: inputs.email,
-        github_url: inputs.github_url,
-        linkedin_url: inputs.linkedin_url,
-      } as UserSignup;
-      dispatch(userSignup(signupuser));
-    }
-  };
-
+  const { inputs, setInputs, setSigningUp } = useSignUpInputs();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.upperContainer}>
@@ -104,7 +45,7 @@ const SignupScreen = () => {
       />
       <Button
         callback={() => {
-          signup(inputs);
+          setSigningUp(true);
         }}
         text={"Sign up"}
       />
