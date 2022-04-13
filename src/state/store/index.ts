@@ -3,6 +3,7 @@ import { projectListSlice } from "../reducer/projectListSlice";
 import { projectSlice } from "../reducer/projectSlice";
 import { userSlice } from "../reducer/userSlice";
 import { technologiesListSlice } from "../reducer/technologySlice";
+import { addProjectSlice } from "../reducer/addProjectSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     project: projectSlice.reducer,
     user: userSlice.reducer,
     technologies: technologiesListSlice.reducer,
+    addProject: addProjectSlice.reducer,
   },
 });
 

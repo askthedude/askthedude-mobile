@@ -17,11 +17,10 @@ import { AddProject, addProject } from "../../../state/reducer/addProjectSlice";
 
 const AddProjectScreen = () => {
   const dispatch = useDispatch();
-  const {
-    technologies,
-    loading,
-  }: { technologies: TechnologyData[]; loading: string } = useSelector(
-    (state: RootState) => state.technologies
+  const { technologies }: { technologies: TechnologyData[]; loading: string } =
+    useSelector((state: RootState) => state.technologies);
+  const { loading }: { loading: string } = useSelector(
+    (state: RootState) => state.addProject
   );
   const { token }: { token: string | undefined } = useSelector(
     (state: RootState) => state.user
@@ -124,6 +123,7 @@ const AddProjectScreen = () => {
             callback={(txt) =>
               setInputs((prev: any) => ({ ...prev, name: txt }))
             }
+            errorMessage={inputs.name_error}
           />
           <Input
             placeholder={"Description"}
@@ -131,24 +131,28 @@ const AddProjectScreen = () => {
               setInputs((prev: any) => ({ ...prev, description: txt }));
             }}
             containerStyle={{ height: 120 }}
+            errorMessage={inputs.description_error}
           />
           <Input
             placeholder={"Start date"}
             callback={(txt) => {
               setInputs((prev: any) => ({ ...prev, start_date: txt }));
             }}
+            errorMessage={inputs.start_date_error}
           />
           <Input
             placeholder={"github_url"}
             callback={(txt) => {
               setInputs((prev: any) => ({ ...prev, github_url: txt }));
             }}
+            errorMessage={inputs.github_url_error}
           />
           <Input
             placeholder={"url"}
             callback={(txt) => {
               setInputs((prev: any) => ({ ...prev, url: txt }));
             }}
+            errorMessage={inputs.url_error}
           />
           {/* <ScrollView></ScrollView> */}
           {/* <View style={styles.scrollViewContainer}>
@@ -162,6 +166,11 @@ const AddProjectScreen = () => {
             }}
             text={"Create project"}
           />
+          {loading === "succeeded" ? (
+            <TitleView text={"Succesfully added project"} />
+          ) : loading === "failed" ? (
+            <TitleView text={"Failed to added project"} />
+          ) : null}
         </>
       )}
     </SafeAreaView>

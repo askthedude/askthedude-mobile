@@ -6,13 +6,14 @@ import { color, size } from "../../../commons/style";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Button from "../../../commons/component/ButtonView";
 import { userSlice } from "../../../state/reducer/userSlice";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const ProfileScreen = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {user === undefined ? null : (
         <>
           <Ionicons name={"person-outline"} size={size.icon.big} />
@@ -33,7 +34,7 @@ export const ProfileScreen = () => {
           <View style={styles.userProjectsDataContainer}></View>
         </>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
