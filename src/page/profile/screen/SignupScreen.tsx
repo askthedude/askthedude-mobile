@@ -78,7 +78,7 @@ const SignupScreen = () => {
           <HeaderBackButton onPress={() => navigation.goBack()} />
         </View>
         <TitleView
-          text={"Find collaborators and projects to contribute to"}
+          text={"Sign up to find collaborators and projects to contribute to."}
           inputStyle={styles.titleContainer}
         />
       </View>

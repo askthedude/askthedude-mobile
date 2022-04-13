@@ -22,7 +22,8 @@ const validateInputMethod = (method: string) => {
 export const requestApi = async (
   url: string,
   method: Method,
-  body: any = {}
+  body: any = {},
+  token: string = ""
 ): Promise<any> => {
   if (validateInputMethod(method)) {
     const requestBody: any = {
@@ -35,6 +36,11 @@ export const requestApi = async (
     if (method !== "GET" && method !== "get") {
       requestBody.data = {
         ...body,
+      };
+    }
+    if (token && token !== "") {
+      requestBody.headers = {
+        Authorization: `Bearer: ${token}`,
       };
     }
     const response = await axios(requestBody);
