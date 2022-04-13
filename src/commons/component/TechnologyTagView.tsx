@@ -17,7 +17,7 @@ export const TechnologyTagView = ({
         { backgroundColor: backgroundColor || "white" },
       ]}
     >
-      <Text style={styles.text}>{techonolgy.title || ""}</Text>
+      <Text style={styles.text}>{techonolgy.name || ""}</Text>
     </View>
   );
 };

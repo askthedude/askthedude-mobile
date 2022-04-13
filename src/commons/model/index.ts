@@ -25,7 +25,7 @@ export interface CompleteProjectData {
 
 export interface TechnologyData {
   id: number;
-  title: string;
+  name: string;
   is_hot: boolean;
   resource_url: string;
 }

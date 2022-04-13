@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { UserData } from "../../commons/model/index";
 import { requestApi } from "../../commons/api/index";
 
-export interface ProjectListState {
+export interface UserState {
   loading: "idle" | "pending" | "succeeded" | "failed";
   user: UserData | undefined;
   token: string | undefined;
 }
 
-const initialState: ProjectListState = {
+const initialState: UserState = {
   loading: "idle",
   user: undefined,
   token: undefined,
