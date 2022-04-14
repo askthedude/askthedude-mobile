@@ -17,7 +17,7 @@ const Input = ({
   placeholder: string;
   callback: (txt: string) => void;
   errorMessage?: string;
-  animation: any;
+  animation?: any;
 }) => {
   const { scale, animationStyle } = useScale();
   useEffect(() => {

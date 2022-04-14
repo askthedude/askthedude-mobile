@@ -13,7 +13,8 @@ import { useAddProject } from "../hook/projectInputHook";
 import { AddProjectState } from "../../../state/reducer/addProjectSlice";
 
 const AddProjectScreen = () => {
-  const { setAddingProject, setInputs, inputs } = useAddProject();
+  const { setAddingProject, setInputs, inputs, addingProject } =
+    useAddProject();
 
   const {
     technologies, //todo: use this array for tech tags
@@ -34,6 +35,7 @@ const AddProjectScreen = () => {
               setInputs((prev: any) => ({ ...prev, name: txt }))
             }
             errorMessage={inputs.name_error}
+            animation={addingProject}
           />
           <Input
             placeholder={"Description"}
@@ -42,6 +44,7 @@ const AddProjectScreen = () => {
             }}
             containerStyle={{ height: 120 }}
             errorMessage={inputs.description_error}
+            animation={addingProject}
           />
           <Input
             placeholder={"Start date"}
@@ -49,6 +52,7 @@ const AddProjectScreen = () => {
               setInputs((prev: any) => ({ ...prev, start_date: txt }));
             }}
             errorMessage={inputs.start_date_error}
+            animation={addingProject}
           />
           <Input
             placeholder={"github_url"}
@@ -56,6 +60,7 @@ const AddProjectScreen = () => {
               setInputs((prev: any) => ({ ...prev, github_url: txt }));
             }}
             errorMessage={inputs.github_url_error}
+            animation={addingProject}
           />
           <Input
             placeholder={"url"}
@@ -63,6 +68,7 @@ const AddProjectScreen = () => {
               setInputs((prev: any) => ({ ...prev, url: txt }));
             }}
             errorMessage={inputs.url_error}
+            animation={addingProject}
           />
           {/* <ScrollView></ScrollView> */}
           {/* <View style={styles.scrollViewContainer}>

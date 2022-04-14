@@ -114,5 +114,6 @@ export const useAddProject = () => {
     inputs,
     setAddingProject,
     setInputs,
+    addingProject,
   };
 };
