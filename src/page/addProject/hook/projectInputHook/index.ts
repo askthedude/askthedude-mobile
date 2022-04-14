@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProject, AddProject } from "../../../state/reducer/addProjectSlice";
+import {
+  addProject,
+  AddProject,
+} from "../../../../state/reducer/addProjectSlice";
 import {
   filterTechnology,
   getAllTechnologiesObj,
-} from "../../../state/reducer/technologySlice";
-import { RootState } from "../../../state/store";
+} from "../../../../state/reducer/technologySlice";
+import { RootState } from "../../../../state/store";
 
-export const useAddProjectInputs = () => {
+export const useAddProject = () => {
   const [addingProject, setAddingProject] = useState(false);
   const [inputs, setInputs] = useState<any>({
     name: "",

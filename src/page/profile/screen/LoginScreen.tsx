@@ -1,56 +1,24 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { Divider } from "../../../commons/component/DividerView";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Button from "../../../commons/component/ButtonView";
-import { useDispatch, useSelector } from "react-redux";
-import { UserLogin, userLogin } from "../../../state/reducer/userSlice";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 import { useNavigation } from "@react-navigation/native";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
 import Input from "../../../commons/component/InputView";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useLogin } from "../hook/loginHook/useLogin";
 
 export const LoginScreen = () => {
-  const dispatch = useDispatch();
   const navigation: any = useNavigation();
-  const [{ username, uerror }, setUsername] = useState({
-    username: "",
-    uerror: "",
-  });
-  const [{ password, perror }, setPassword] = useState({
-    password: "",
-    perror: "",
-  });
-  const { loading } = useSelector((state: RootState) => state.user);
-
-  const signin = () => {
-    if (username && username !== "" && password && password !== "") {
-      const trimmedUsername = username.trim();
-      const trimmedPassword = password.trim();
-      const data: UserLogin = {
-        username: trimmedUsername,
-        password: trimmedPassword,
-      };
-      dispatch(userLogin(data));
-    } else {
-      if (!username || username === "") {
-        setUsername((prev) => ({ ...prev, uerror: "Please fill in username" }));
-      } else {
-        setUsername((prev) => ({ ...prev, uerror: "" }));
-      }
-      if (!password || password === "") {
-        setPassword((prev) => ({ ...prev, perror: "Please fill in username" }));
-      } else {
-        setPassword((prev) => ({ ...prev, perror: "" }));
-      }
-    }
-  };
-
   const signup = () => {
     navigation.navigate("Signup", {});
   };
+  const { loading } = useSelector((state: RootState) => state.user);
+  const { inputs, setPassword, setUsername, setLoging } = useLogin();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,14 +31,14 @@ export const LoginScreen = () => {
             setUsername((prev) => ({ ...prev, username: txt }))
           }
           placeholder={"Username"}
-          errorMessage={uerror}
+          errorMessage={inputs.uerror}
         />
         <Input
           callback={(txt) =>
             setPassword((prev) => ({ ...prev, password: txt }))
           }
           placeholder={"Password"}
-          errorMessage={perror}
+          errorMessage={inputs.perror}
         />
       </View>
       {loading === "pending" ? (
@@ -80,7 +48,7 @@ export const LoginScreen = () => {
           <Button
             text={"Sign in"}
             callback={() => {
-              signin();
+              setLoging(true);
             }}
           />
           <View style={styles.dividerContainer}>

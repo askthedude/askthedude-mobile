@@ -7,11 +7,11 @@ import TitleView from "../../../commons/component/TitleView";
 import { HeaderBackButton } from "@react-navigation/elements";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useSignUpInputs } from "../hook/signupHook";
+import { useSignUp } from "../hook/signupHook";
 
 const SignupScreen = () => {
   const navigation = useNavigation();
-  const { inputs, setInputs, setSigningUp } = useSignUpInputs();
+  const { inputs, setInputs, setSigningUp } = useSignUp();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.upperContainer}>

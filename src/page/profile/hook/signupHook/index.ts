@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { validateEmail } from "../../../commons/utils/validation";
-import { userSignup, UserSignup } from "../../../state/reducer/userSlice";
+import { validateEmail } from "../../../../commons/utils/validation";
+import { userSignup, UserSignup } from "../../../../state/reducer/userSlice";
 
-export const useSignUpInputs = () => {
+export const useSignUp = () => {
   const [signingUp, setSigningUp] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",

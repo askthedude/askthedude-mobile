@@ -9,11 +9,11 @@ import Loading from "../../../commons/component/LoadingView";
 import Input from "../../../commons/component/InputView";
 import TitleView from "../../../commons/component/TitleView";
 import Button from "../../../commons/component/ButtonView";
-import { useAddProjectInputs } from "../hook/projectInputHook";
+import { useAddProject } from "../hook/projectInputHook";
 import { AddProjectState } from "../../../state/reducer/addProjectSlice";
 
 const AddProjectScreen = () => {
-  const { setAddingProject, setInputs, inputs } = useAddProjectInputs();
+  const { setAddingProject, setInputs, inputs } = useAddProject();
 
   const {
     technologies, //todo: use this array for tech tags
