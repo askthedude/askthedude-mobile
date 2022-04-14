@@ -18,7 +18,7 @@ export const LoginScreen = () => {
     navigation.navigate("Signup", {});
   };
   const { loading } = useSelector((state: RootState) => state.user);
-  const { inputs, setPassword, setUsername, setLoging } = useLogin();
+  const { inputs, setPassword, setUsername, setLoging, loging } = useLogin();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -28,17 +28,19 @@ export const LoginScreen = () => {
       <View style={styles.form}>
         <Input
           callback={(txt) =>
-            setUsername((prev) => ({ ...prev, username: txt }))
+            setUsername((prev) => ({ ...prev, username: txt, uerror: "" }))
           }
           placeholder={"Username"}
           errorMessage={inputs.uerror}
+          animation={loging}
         />
         <Input
           callback={(txt) =>
-            setPassword((prev) => ({ ...prev, password: txt }))
+            setPassword((prev) => ({ ...prev, password: txt, perror: "" }))
           }
           placeholder={"Password"}
           errorMessage={inputs.perror}
+          animation={loging}
         />
       </View>
       {loading === "pending" ? (

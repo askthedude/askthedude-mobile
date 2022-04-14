@@ -70,5 +70,5 @@ export const useSignUp = () => {
     }
   };
 
-  return { inputs, setInputs, setSigningUp };
+  return { inputs, setInputs, setSigningUp, signingUp };
 };

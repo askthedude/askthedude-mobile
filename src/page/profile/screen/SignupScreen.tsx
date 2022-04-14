@@ -11,7 +11,7 @@ import { useSignUp } from "../hook/signupHook";
 
 const SignupScreen = () => {
   const navigation = useNavigation();
-  const { inputs, setInputs, setSigningUp } = useSignUp();
+  const { inputs, setInputs, setSigningUp, signingUp } = useSignUp();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.upperContainer}>
@@ -25,23 +25,35 @@ const SignupScreen = () => {
       </View>
       <Input
         placeholder={"Name"}
-        callback={(txt) => setInputs((prev) => ({ ...prev, name: txt }))}
+        callback={(txt) =>
+          setInputs((prev) => ({ ...prev, name: txt, name_error: "" }))
+        }
         errorMessage={inputs.name_error}
+        animation={signingUp}
       />
       <Input
         placeholder={"Username"}
-        callback={(txt) => setInputs((prev) => ({ ...prev, username: txt }))}
+        callback={(txt) =>
+          setInputs((prev) => ({ ...prev, username: txt, username_error: "" }))
+        }
         errorMessage={inputs.username_error}
+        animation={signingUp}
       />
       <Input
         placeholder={"Password"}
-        callback={(txt) => setInputs((prev) => ({ ...prev, password: txt }))}
+        callback={(txt) =>
+          setInputs((prev) => ({ ...prev, password: txt, password_error: "" }))
+        }
         errorMessage={inputs.password_error}
+        animation={signingUp}
       />
       <Input
         placeholder={"email"}
-        callback={(txt) => setInputs((prev) => ({ ...prev, email: txt }))}
+        callback={(txt) =>
+          setInputs((prev) => ({ ...prev, email: txt, email_error: "" }))
+        }
         errorMessage={inputs.email_error}
+        animation={signingUp}
       />
       <Button
         callback={() => {

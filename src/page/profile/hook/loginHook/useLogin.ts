@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin, UserLogin } from "../../../../state/reducer/userSlice";
-import { RootState } from "../../../../state/store";
 
 export const useLogin = () => {
   const dispatch = useDispatch();
@@ -46,5 +45,11 @@ export const useLogin = () => {
     }
   };
 
-  return { inputs: { perror, uerror }, setPassword, setUsername, setLoging };
+  return {
+    inputs: { perror, uerror },
+    setPassword,
+    setUsername,
+    setLoging,
+    loging,
+  };
 };

@@ -21,11 +21,10 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: color.white,
     flexDirection: "row",
   },
   searchInput: {
-    height: size.height.small,
+    height: size.height.big,
     marginVertical: size.margin.small,
   },
 });

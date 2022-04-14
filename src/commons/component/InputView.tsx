@@ -1,6 +1,12 @@
 import { View, TextInput, StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { color, size } from "../style";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 const Input = ({
   containerStyle = {},
@@ -8,19 +14,48 @@ const Input = ({
   placeholder = "input text",
   callback = () => {},
   errorMessage = "",
+  animation,
 }: {
   containerStyle?: any;
   inputStyle?: any;
   placeholder: string;
   callback: (txt: string) => void;
   errorMessage?: string;
+  animation: any;
 }) => {
+  const componentSize = useSharedValue(1);
+  const config = {
+    duration: 400,
+    easing: Easing.bezier(0.5, 0.01, 0, 1),
+  };
+  const animationStyle = useAnimatedStyle(() => {
+    return {
+      width: withTiming(
+        size.width.big * componentSize.value,
+        config,
+        () => (componentSize.value = 1)
+      ),
+      height: withTiming(
+        size.height.big * componentSize.value,
+        config,
+        () => (componentSize.value = 1)
+      ),
+    };
+  });
+
+  useEffect(() => {
+    if (errorMessage != "") {
+      componentSize.value = 1.2;
+    }
+  }, [animation]);
+
   return (
-    <View
+    <Animated.View
       style={[
         styles.container,
         { borderColor: errorMessage !== "" ? color.error : color.borderGrey },
         containerStyle,
+        animationStyle,
       ]}
     >
       <TextInput
@@ -31,7 +66,7 @@ const Input = ({
           callback(txt);
         }}
       />
-    </View>
+    </Animated.View>
   );
 };
 
