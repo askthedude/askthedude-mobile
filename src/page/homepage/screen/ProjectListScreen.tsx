@@ -9,6 +9,7 @@ import { RootState } from "../../../state/store";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
 import { SafeAreaView } from "react-native-safe-area-context";
+import SearchInputView from "../../../commons/component/SearchInputView";
 
 export const ProjectListScreen = () => {
   const navigation: any = useNavigation();
@@ -26,6 +27,7 @@ export const ProjectListScreen = () => {
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
+      <SearchInputView />
       {loading === "pending" ? (
         <Loading />
       ) : (

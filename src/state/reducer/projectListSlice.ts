@@ -12,9 +12,24 @@ const initialState: ProjectListState = {
   projects: [],
 };
 
+const OFFSET = 0;
+const LIMIT = 20;
+
+export type FilterProject = {
+  title?: string;
+  description?: string;
+  start_date?: string;
+  stars?: number;
+  is_active?: boolean;
+  author_user_id?: number;
+  technology_ids?: number[];
+  offset?: number;
+  limit?: number;
+};
+
 export const filterProjects = createAsyncThunk(
   "project/filter",
-  async (projectFilter: any, thunkAPI) => {
+  async (projectFilter: FilterProject, thunkAPI) => {
     try {
       const response: any = await requestApi(
         "api/project/filter",
