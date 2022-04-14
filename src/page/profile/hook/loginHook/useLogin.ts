@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userLogin, UserLogin } from "../../../../state/reducer/userSlice";
 
 export const useLogin = () => {

@@ -4,6 +4,8 @@ import { color, size } from "../style";
 import Animated from "react-native-reanimated";
 import { useScale } from "../animation/useScaleAnimation";
 
+const SCALE_CONSTANT = 1.2;
+
 const Input = ({
   containerStyle = {},
   inputStyle = {},
@@ -22,7 +24,7 @@ const Input = ({
   const { scale, animationStyle } = useScale();
   useEffect(() => {
     if (errorMessage != "") {
-      scale.value = 1.2;
+      scale.value = SCALE_CONSTANT;
     }
   }, [animation]);
 
