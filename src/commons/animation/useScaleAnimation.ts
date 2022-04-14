@@ -6,10 +6,10 @@ import {
 } from "react-native-reanimated";
 import { size } from "../style";
 
-export const useScale = (duration: number = 500) => {
+export const useScale = (duration: number = 400) => {
   const scale = useSharedValue(1);
   const config = {
-    duration: 400,
+    duration: duration,
     easing: Easing.bezier(0.5, 0.01, 0, 1),
   };
   const animationStyle = useAnimatedStyle(() => {
