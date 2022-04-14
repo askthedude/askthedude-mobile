@@ -7,22 +7,25 @@ import {
 import { size } from "../style";
 
 export const useScale = (duration: number = 500) => {
-  const componentSize = useSharedValue(1);
+  const scale = useSharedValue(1);
   const config = {
-    duration: duration,
+    duration: 400,
     easing: Easing.bezier(0.5, 0.01, 0, 1),
   };
   const animationStyle = useAnimatedStyle(() => {
     return {
-      width: withTiming(size.width.big * componentSize.value, config),
-      height: withTiming(size.height.big * componentSize.value, config),
+      width: withTiming(
+        size.width.big * scale.value,
+        config,
+        () => (scale.value = 1)
+      ),
+      height: withTiming(
+        size.height.big * scale.value,
+        config,
+        () => (scale.value = 1)
+      ),
     };
   });
-
-  const scale = () => {
-    console.log("icreasing");
-    componentSize.value = 1.2;
-  };
 
   return { scale, animationStyle };
 };

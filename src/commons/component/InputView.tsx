@@ -1,12 +1,8 @@
-import { View, TextInput, StyleSheet } from "react-native";
+import { TextInput, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import { color, size } from "../style";
-import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
+import { useScale } from "../animation/useScaleAnimation";
 
 const Input = ({
   containerStyle = {},
@@ -23,29 +19,10 @@ const Input = ({
   errorMessage?: string;
   animation: any;
 }) => {
-  const componentSize = useSharedValue(1);
-  const config = {
-    duration: 400,
-    easing: Easing.bezier(0.5, 0.01, 0, 1),
-  };
-  const animationStyle = useAnimatedStyle(() => {
-    return {
-      width: withTiming(
-        size.width.big * componentSize.value,
-        config,
-        () => (componentSize.value = 1)
-      ),
-      height: withTiming(
-        size.height.big * componentSize.value,
-        config,
-        () => (componentSize.value = 1)
-      ),
-    };
-  });
-
+  const { scale, animationStyle } = useScale();
   useEffect(() => {
     if (errorMessage != "") {
-      componentSize.value = 1.2;
+      scale.value = 1.2;
     }
   }, [animation]);
 
