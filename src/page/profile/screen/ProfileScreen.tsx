@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { RootState } from "../../../state/store";
 import { useDispatch, useSelector } from "react-redux";
 import { color, size } from "../../../commons/style";
@@ -7,11 +7,25 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Button from "../../../commons/component/ButtonView";
 import { userSlice } from "../../../state/reducer/userSlice";
 import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  filterUserProjects,
+  getFilterProjectObjectForUser,
+} from "../../../state/reducer/userProjectsListSlice";
+import { ProjectListView } from "../../../commons/component/ProjectListView";
+import TitleView from "../../../commons/component/TitleView";
+import Loading from "../../../commons/component/LoadingView";
 
 export const ProfileScreen = () => {
   const user = useSelector((state: RootState) => state.user.user);
+  const { projects, loading: projectsLoading } = useSelector(
+    (state: RootState) => state.userProjects
+  );
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    if (user?.id !== undefined) {
+      dispatch(filterUserProjects(getFilterProjectObjectForUser(user.id)));
+    }
+  }, [user]);
   return (
     <SafeAreaView style={styles.container}>
       {user === undefined ? null : (
@@ -31,7 +45,14 @@ export const ProfileScreen = () => {
             }}
             text={"Sign out"}
           />
-          <View style={styles.userProjectsDataContainer}></View>
+          {projectsLoading === "idle" ? (
+            <Loading />
+          ) : (
+            <View style={styles.userProjectsDataContainer}>
+              <TitleView text={"Your projects"} />
+              <ProjectListView projects={projects} />
+            </View>
+          )}
         </>
       )}
     </SafeAreaView>
@@ -59,6 +80,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
+    marginVertical: size.margin.big,
   },
-  userProjectsDataContainer: {},
+  userProjectsDataContainer: {
+    flex: 1,
+    marginVertical: size.margin.big,
+    width: "100%",
+  },
 });

@@ -10,9 +10,9 @@ import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInputView from "../../../commons/component/SearchInputView";
+import { ProjectListView } from "../../../commons/component/ProjectListView";
 
 export const ProjectListScreen = () => {
-  const navigation: any = useNavigation();
   const dispatch = useDispatch();
   const {
     loading,
@@ -23,7 +23,7 @@ export const ProjectListScreen = () => {
 
   useEffect(() => {
     dispatch(filterProjects({}));
-  }, [navigation]);
+  }, []);
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
@@ -31,20 +31,7 @@ export const ProjectListScreen = () => {
       {loading === "pending" ? (
         <Loading />
       ) : (
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          {projects.map((project) => (
-            <PartialProjectInfoView
-              key={project.id}
-              project={project}
-              onClickCallback={() => {
-                navigation.navigate("Project", { projectId: project.id });
-              }}
-            />
-          ))}
-        </ScrollView>
+        <ProjectListView projects={projects} />
       )}
     </SafeAreaView>
   );
