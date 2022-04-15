@@ -20,7 +20,6 @@ export const ProjectListScreen = () => {
   }: { loading: string; projects: PartialProjectData[] } = useSelector(
     (state: RootState) => state.projects
   );
-
   useEffect(() => {
     dispatch(filterProjects({}));
   }, []);
