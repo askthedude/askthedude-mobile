@@ -1,10 +1,7 @@
-import { StyleSheet, ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import { StyleSheet } from "react-native";
+import React from "react";
 import { PartialProjectData } from "../../../commons/model";
-import { PartialProjectInfoView } from "../../../commons/component/PartialProjectView";
-import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { filterProjects } from "../../../state/reducer/projectListSlice";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
@@ -13,16 +10,12 @@ import SearchInputView from "../../../commons/component/SearchInputView";
 import { ProjectListView } from "../../../commons/component/ProjectListView";
 
 export const ProjectListScreen = () => {
-  const dispatch = useDispatch();
   const {
     loading,
     projects,
   }: { loading: string; projects: PartialProjectData[] } = useSelector(
     (state: RootState) => state.projects
   );
-  useEffect(() => {
-    dispatch(filterProjects({}));
-  }, []);
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>

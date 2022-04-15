@@ -26,6 +26,7 @@ export const ProfileScreen = () => {
       dispatch(filterUserProjects(getFilterProjectObjectForUser(user.id)));
     }
   }, [user]);
+
   return (
     <SafeAreaView style={styles.container}>
       {user === undefined ? null : (
@@ -45,7 +46,7 @@ export const ProfileScreen = () => {
             }}
             text={"Sign out"}
           />
-          {projectsLoading === "idle" ? (
+          {projectsLoading === "pending" ? (
             <Loading />
           ) : (
             <View style={styles.userProjectsDataContainer}>
