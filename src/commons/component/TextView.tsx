@@ -2,16 +2,18 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { color, size } from "../style";
 
-const TitleView = ({
+export const TextView = ({
   text,
   inputStyle = {},
+  textStyle = {},
 }: {
   text?: string;
   inputStyle?: any;
+  textStyle?: any;
 }) => {
   return (
     <View style={[styles.container, inputStyle]}>
-      <Text style={styles.textStyles}>{text}</Text>
+      <Text style={[styles.textStyles, textStyle]}>{text}</Text>
     </View>
   );
 };
@@ -22,10 +24,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textStyles: {
-    fontSize: size.font.big,
+    fontSize: size.font.medium,
     textAlign: "center",
     color: color.darkblue,
   },
 });
-
-export default TitleView;

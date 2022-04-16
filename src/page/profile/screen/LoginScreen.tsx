@@ -25,7 +25,7 @@ export const LoginScreen = () => {
       <View style={styles.titleContainer}>
         <Ionicons name={"person-circle"} size={size.icon.xbig} />
       </View>
-      <View style={styles.form}>
+      <View style={styles.formContainer}>
         <Input
           callback={(txt) =>
             setUsername((prev) => ({ ...prev, username: txt, uerror: "" }))
@@ -92,8 +92,10 @@ const styles = StyleSheet.create({
     fontSize: size.font.big,
     fontWeight: "700",
   },
-  form: {
+  formContainer: {
     marginVertical: size.margin.xbig,
+    alignItems: "center",
+    justifyContent: "center",
   },
   dividerContainer: {
     width: "50%",

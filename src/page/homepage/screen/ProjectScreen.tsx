@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useEffect } from "react";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import { TechnologyTagView } from "../../../commons/component/TechnologyTagView";
 import UpvotesView from "../../../commons/component/UpvotesView";
 import UserInfoView from "../../../commons/component/UserInfoView";
@@ -15,14 +15,16 @@ import {
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { HeaderBackButton } from "@react-navigation/elements";
+import TitleView from "../../../commons/component/TitleView";
+import { NavigationScreenHeader } from "../../../commons/component/NavigationScreenHeader";
+import { TextView } from "../../../commons/component/TextView";
+import { SeenView } from "../../../commons/component/SeenView";
 
 export const ProjectScreen = () => {
   const route: any = useRoute();
   const { projectId } = route.params;
   const dispatch = useDispatch();
   const { project, loading } = useSelector((state: RootState) => state.project);
-  const navigation = useNavigation();
 
   const apiCommunication = async () => {
     await Promise.all([dispatch(getProjectById(projectId))]);
@@ -40,41 +42,41 @@ export const ProjectScreen = () => {
       {loading === "pending" ? (
         <Loading />
       ) : (
-        <ScrollView contentContainerStyle={styles.container}>
-          <View style={styles.upperContainer}>
-            <View style={styles.backContainer}>
-              <HeaderBackButton onPress={() => navigation.goBack()} />
-            </View>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>{project?.title}</Text>
-            </View>
-          </View>
-
-          <View style={styles.middleContainer}>
-            <Text style={styles.author}>
-              Posted by: {project?.users[0].username}
-            </Text>
-            <View style={styles.descriptionContainer}>
-              <Text style={styles.descriptionText}>{project?.description}</Text>
-            </View>
-            <View style={styles.metadataContainer}>
-              <View style={styles.tagsContainer}>
-                {project?.technologies.map((tech) => (
-                  <TechnologyTagView key={tech.id} techonolgy={tech} />
-                ))}
+        <>
+          <NavigationScreenHeader text={"Project"} />
+          <ScrollView contentContainerStyle={styles.container}>
+            <View style={styles.upperContainer}>
+              <TitleView text={project?.title} />
+              <Text style={styles.author}>
+                By: {project?.users[0].username}
+              </Text>
+              <TextView
+                text={project?.description}
+                inputStyle={styles.descriptionContainer}
+                textStyle={styles.descriptionText}
+              />
+              <View style={styles.metadataContainer}>
+                <View style={styles.tagsContainer}>
+                  {project?.technologies.map((tech) => (
+                    <TechnologyTagView key={tech.id} techonolgy={tech} />
+                  ))}
+                </View>
+                <View style={styles.viewsContainer}>
+                  <UpvotesView
+                    upvotes={project?.stars}
+                    inputStyle={styles.upvotesWrapper}
+                  />
+                  <SeenView statistics={project?.stats} />
+                </View>
               </View>
-              <UpvotesView upvotes={project?.stars} />
+              <ProjectDetails
+                project_url={project?.url}
+                start_date={project?.start_date}
+              />
+              {/* <UserInfoView user={project?.users[0]} /> */}
             </View>
-            <ProjectDetails
-              project_url={project?.url}
-              start_date={project?.start_date}
-              statistics={project?.stats}
-            />
-          </View>
-          <View style={styles.bottomContainer}>
-            <UserInfoView user={project?.users[0]} />
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </>
       )}
     </SafeAreaView>
   );
@@ -87,50 +89,43 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    paddingHorizontal: size.padding.small,
   },
-  upperContainer: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: size.padding.small,
-  },
-  backContainer: {
-    justifyContent: "flex-start",
-  },
-  titleContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: size.font.big,
-    fontWeight: "500",
-  },
-  authorContainer: {},
   author: { fontSize: size.font.small },
-  middleContainer: {
+  upperContainer: {
     justifyContent: "center",
     alignItems: "flex-start",
     maxHeight: "50%",
-    paddingHorizontal: size.padding.small,
+    padding: size.padding.small,
+    backgroundColor: color.white,
+    borderRadius: size.borderRadius.small,
   },
   descriptionContainer: {
     maxWidth: "70%",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    marginVertical: size.margin.small,
+    marginVertical: size.margin.medium,
   },
-  descriptionText: { fontSize: size.font.medium, fontWeight: "300" },
-  detailsContainer: {},
+  descriptionText: {
+    fontSize: size.font.medium,
+    fontWeight: "300",
+    textAlign: "left",
+  },
   metadataContainer: {
     width: "100%",
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: color.lighterGrey,
     borderRadius: size.borderRadius.xsmall,
     paddingHorizontal: size.padding.small,
+  },
+  viewsContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  upvotesWrapper: {
+    marginHorizontal: size.margin.medium,
   },
   tagsContainer: {
     alignItems: "flex-start",

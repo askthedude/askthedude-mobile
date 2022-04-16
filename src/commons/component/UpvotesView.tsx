@@ -3,9 +3,15 @@ import React from "react";
 import { UpvoteArrowView } from "./UpvoteArrowView";
 import { size } from "../style";
 
-const UpvotesView = ({ upvotes }: { upvotes?: number }) => {
+const UpvotesView = ({
+  upvotes,
+  inputStyle = {},
+}: {
+  upvotes?: number;
+  inputStyle?: any;
+}) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, inputStyle]}>
       <View style={{ marginRight: 5 }}>
         <UpvoteArrowView size={15} />
       </View>
