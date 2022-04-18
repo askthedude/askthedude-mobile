@@ -21,7 +21,7 @@ export const MainNavigation = () => {
             component={HomePage}
             options={{
               tabBarIcon: ({}) => (
-                <Ionicons name="search-outline" size={size.icon.small} />
+                <Ionicons name="search-outline" size={size.icon.medium} />
               ),
               headerShown: false,
             }}
@@ -31,7 +31,7 @@ export const MainNavigation = () => {
             component={ProfilePage}
             options={{
               tabBarIcon: ({}) => (
-                <Ionicons name="person-outline" size={size.icon.small} />
+                <Ionicons name="person-outline" size={size.icon.medium} />
               ),
               headerShown: false,
             }}
@@ -41,7 +41,7 @@ export const MainNavigation = () => {
             component={AddProject}
             options={{
               tabBarIcon: ({}) => (
-                <Ionicons name="add-circle-outline" size={size.icon.small} />
+                <Ionicons name="add-circle-outline" size={size.icon.medium} />
               ),
               headerShown: false,
             }}
@@ -51,7 +51,10 @@ export const MainNavigation = () => {
             component={Notifications}
             options={{
               tabBarIcon: ({}) => (
-                <Ionicons name="notifications-outline" size={size.icon.small} />
+                <Ionicons
+                  name="notifications-outline"
+                  size={size.icon.medium}
+                />
               ),
               headerShown: false,
             }}
