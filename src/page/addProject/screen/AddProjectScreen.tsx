@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
-import React from "react";
-import { color } from "../../../commons/style";
+import { StyleSheet, View, Text } from "react-native";
+import React, { useContext } from "react";
+import { color, size } from "../../../commons/style";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { TechnologyState } from "../../../state/reducer/technologySlice";
@@ -9,12 +9,13 @@ import Loading from "../../../commons/component/LoadingView";
 import Input from "../../../commons/component/InputView";
 import TitleView from "../../../commons/component/TitleView";
 import Button from "../../../commons/component/ButtonView";
-import { useAddProject } from "../hook/projectInputHook";
 import { AddProjectState } from "../../../state/reducer/addProjectSlice";
+import { PicklistView } from "../../../commons/component/PicklistVIew";
+import { AddProjectContext } from "../context";
 
 const AddProjectScreen = () => {
   const { setAddingProject, setInputs, inputs, addingProject } =
-    useAddProject();
+    useContext(AddProjectContext);
 
   const {
     technologies, //todo: use this array for tech tags
@@ -28,7 +29,10 @@ const AddProjectScreen = () => {
         <Loading />
       ) : (
         <>
-          <TitleView text={"Add new rockstar project"} />
+          <TitleView
+            text={"Add new rockstar project"}
+            inputStyle={styles.titleContainer}
+          />
           <Input
             placeholder={"name"}
             callback={(txt) =>
@@ -70,12 +74,10 @@ const AddProjectScreen = () => {
             errorMessage={inputs.url_error}
             animation={addingProject}
           />
-          {/* <ScrollView></ScrollView> */}
-          {/* <View style={styles.scrollViewContainer}>
-            {technologies.map((e: TechnologyData) => (
-              <Text>{e.id}</Text>
-            ))}
-          </View> */}
+          <Text>Press relevant technology tags</Text>
+          <View style={styles.tagsWrapper}>
+            <PicklistView tags={technologies.technologies} />
+          </View>
           <Button
             callback={() => {
               setAddingProject(true);
@@ -100,8 +102,18 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
+  titleContainer: {
+    marginVertical: size.margin.xbig,
+  },
   scrollViewContainer: {
     flex: 1,
+  },
+  tagsWrapper: {
+    width: size.width.big,
+    borderRadius: size.borderRadius.medium,
+    backgroundColor: color.white,
+    marginVertical: size.margin.medium,
+    marginBottom: size.margin.xbig,
   },
 });
 

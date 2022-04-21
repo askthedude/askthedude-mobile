@@ -3,16 +3,19 @@ export const color = {
   backgroundPink: "#E9ECFF",
   lighterGrey: "#FAFAFB",
   borderGrey: "#DDDDDD",
+  backgroundGrey: "#DAE0E6",
   white: "white",
   black: "#0D0B22",
   darkblue: "#00124A",
   error: "#ff5555",
+  green: "#20C28D",
 };
 
 export const size = {
   font: {
     small: 13,
     medium: 18,
+    mediumplus: 20,
     big: 24,
   },
   margin: {
@@ -43,6 +46,7 @@ export const size = {
     big: 50,
   },
   width: {
+    xsmall: 70,
     big: 250,
     xbig: 360,
   },

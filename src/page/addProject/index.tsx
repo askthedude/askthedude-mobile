@@ -1,12 +1,15 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
 import { color } from "../../commons/style";
 import { AddProjectNavigator } from "./navigation";
+import { AppProjectContextProvider } from "./context";
 
 export const AddProject = () => {
   return (
     <View style={styles.container}>
-      <AddProjectNavigator />
+      <AppProjectContextProvider>
+        <AddProjectNavigator />
+      </AppProjectContextProvider>
     </View>
   );
 };
