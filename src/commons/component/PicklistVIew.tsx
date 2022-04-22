@@ -60,15 +60,13 @@ export const PicklistView = ({
         techonolgy={{ name: "", id: -1, resource_url: "", is_hot: false }}
         selected={false}
         iconName="add-circle-outline"
+        pressCallback={() => {}}
       />
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-  },
   scrollViewContainer: {
     width: "100%",
     borderRadius: size.borderRadius.small,

@@ -44,6 +44,7 @@ export const size = {
     small: 35,
     medium: 40,
     big: 50,
+    xxbig: 170,
   },
   width: {
     xsmall: 70,

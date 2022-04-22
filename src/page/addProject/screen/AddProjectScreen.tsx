@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
   },
   tagsWrapper: {
     width: size.width.big,
+    maxHeight: size.height.xxbig,
     borderRadius: size.borderRadius.medium,
     backgroundColor: color.white,
     marginVertical: size.margin.medium,
