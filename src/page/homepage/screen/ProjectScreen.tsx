@@ -96,7 +96,10 @@ export const ProjectScreen = () => {
             </View>
           </ScrollView>
           {modalVisible ? (
-            <AddSubscriptionModal closeCallback={() => toggleModal()} />
+            <AddSubscriptionModal
+              closeCallback={() => toggleModal()}
+              projectId={projectId}
+            />
           ) : null}
         </>
       )}

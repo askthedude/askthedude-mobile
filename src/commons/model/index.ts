@@ -30,6 +30,11 @@ export interface TechnologyData {
   resource_url: string;
 }
 
+export interface SubscriptionData {
+  email: string;
+  project_id: number;
+}
+
 export interface UserData {
   id: number;
   username: string;
