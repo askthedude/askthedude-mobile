@@ -41,6 +41,7 @@ export const LoginScreen = () => {
           placeholder={"Password"}
           errorMessage={inputs.perror}
           animation={loging}
+          secured={true}
         />
       </View>
       {loading === "pending" ? (

@@ -13,6 +13,7 @@ const Input = ({
   callback = () => {},
   errorMessage = "",
   animation,
+  secured = false,
 }: {
   containerStyle?: any;
   inputStyle?: any;
@@ -20,6 +21,7 @@ const Input = ({
   callback: (txt: string) => void;
   errorMessage?: string;
   animation?: any;
+  secured?: boolean;
 }) => {
   const { scale, animationStyle } = useScale();
   useEffect(() => {
@@ -38,6 +40,7 @@ const Input = ({
       ]}
     >
       <TextInput
+        secureTextEntry={secured}
         placeholder={placeholder}
         placeholderTextColor={color.black}
         style={[styles.textInputArea, inputStyle]}

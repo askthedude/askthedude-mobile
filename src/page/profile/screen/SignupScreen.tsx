@@ -46,6 +46,7 @@ const SignupScreen = () => {
           }
           errorMessage={inputs.password_error}
           animation={signingUp}
+          secured={true}
         />
         <Input
           placeholder={"email"}

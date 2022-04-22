@@ -7,7 +7,7 @@ import { AddProjectContext } from "../../page/addProject/context";
 
 export const PicklistView = ({ tags }: { tags: TechnologyData[] }) => {
   const { inputs, setInputs } = useContext(AddProjectContext);
-
+  console.log(inputs);
   const toggleTechnologyTag = (id: number) => {
     const chosenTechnologyIds = inputs.technology_ids;
     const idx = chosenTechnologyIds.indexOf(id);
@@ -20,7 +20,7 @@ export const PicklistView = ({ tags }: { tags: TechnologyData[] }) => {
       setInputs((prev: any) => ({
         ...prev,
         technology_ids: [
-          inputs.technology_ids.filter((_: any, i: number) => i !== idx),
+          ...inputs.technology_ids.filter((_: any, i: number) => i !== idx),
         ],
       }));
     }
@@ -49,10 +49,13 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     width: "100%",
     borderRadius: size.borderRadius.small,
+    flexWrap: "wrap",
   },
   contentContainer: {
     justifyContent: "flex-start",
     alignItems: "flex-start",
     padding: size.padding.small,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
 });

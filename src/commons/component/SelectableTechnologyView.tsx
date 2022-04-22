@@ -47,10 +47,9 @@ const styles = StyleSheet.create({
     marginVertical: size.margin.small,
     justifyContent: "center",
     alignItems: "center",
-    width: size.width.xsmall,
     height: size.height.medium,
   },
-  text: { fontSize: size.font.mediumplus, fontWeight: "500" },
+  text: { fontSize: size.font.medium, fontWeight: "500" },
   selected: {
     backgroundColor: color.green,
   },
@@ -61,6 +60,6 @@ const styles = StyleSheet.create({
     color: color.white,
   },
   textRegular: {
-    color: color.primary,
+    color: color.darkblue,
   },
 });
