@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Alert } from "react-native";
 import React, { useContext } from "react";
 import { color, size } from "../style";
 import { TechnologyData } from "../model/index";
@@ -60,7 +60,9 @@ export const PicklistView = ({
         techonolgy={{ name: "", id: -1, resource_url: "", is_hot: false }}
         selected={false}
         iconName="add-circle-outline"
-        pressCallback={() => {}}
+        pressCallback={() => {
+          Alert.alert("You will sonn be able to add your own categories");
+        }}
       />
     </ScrollView>
   );

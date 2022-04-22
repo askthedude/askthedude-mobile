@@ -36,7 +36,7 @@ const AddProjectScreen = () => {
           <Input
             placeholder={"name"}
             callback={(txt) =>
-              setInputs((prev: any) => ({ ...prev, name: txt }))
+              setInputs((prev: any) => ({ ...prev, name: txt, name_error: "" }))
             }
             errorMessage={inputs.name_error}
             animation={addingProject}
@@ -44,7 +44,11 @@ const AddProjectScreen = () => {
           <Input
             placeholder={"Description"}
             callback={(txt) => {
-              setInputs((prev: any) => ({ ...prev, description: txt }));
+              setInputs((prev: any) => ({
+                ...prev,
+                description: txt,
+                description_error: "",
+              }));
             }}
             containerStyle={{ height: 120 }}
             errorMessage={inputs.description_error}
@@ -53,7 +57,11 @@ const AddProjectScreen = () => {
           <Input
             placeholder={"Start date"}
             callback={(txt) => {
-              setInputs((prev: any) => ({ ...prev, start_date: txt }));
+              setInputs((prev: any) => ({
+                ...prev,
+                start_date: txt,
+                start_date_error: "",
+              }));
             }}
             errorMessage={inputs.start_date_error}
             animation={addingProject}
@@ -61,7 +69,11 @@ const AddProjectScreen = () => {
           <Input
             placeholder={"github_url"}
             callback={(txt) => {
-              setInputs((prev: any) => ({ ...prev, github_url: txt }));
+              setInputs((prev: any) => ({
+                ...prev,
+                github_url: txt,
+                github_url_error: "",
+              }));
             }}
             errorMessage={inputs.github_url_error}
             animation={addingProject}
@@ -69,7 +81,7 @@ const AddProjectScreen = () => {
           <Input
             placeholder={"url"}
             callback={(txt) => {
-              setInputs((prev: any) => ({ ...prev, url: txt }));
+              setInputs((prev: any) => ({ ...prev, url: txt, url_error: "" }));
             }}
             errorMessage={inputs.url_error}
             animation={addingProject}
