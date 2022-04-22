@@ -44,7 +44,10 @@ export const validateInputs = (inputs: any, setInputs: any) => {
     setInputs((prev: any) => ({ ...prev, url_error: "" }));
   }
   if (inputs.technology_ids.length == 0) {
-    Alert.alert("Please choose at least one technology");
+    setInputs((prev: any) => ({
+      ...prev,
+      technology_ids_error: "Please choose at least one technology",
+    }));
     valid = false;
   } else {
     setInputs((prev: any) => ({ ...prev, technology_ids_error: "" }));

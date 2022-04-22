@@ -1,10 +1,8 @@
 import { TextInput, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import { color, size } from "../style";
 import Animated from "react-native-reanimated";
 import { useScale } from "../animation/useScaleAnimation";
-
-const SCALE_CONSTANT = 1.2;
 
 const Input = ({
   containerStyle = {},
@@ -23,12 +21,7 @@ const Input = ({
   animation?: any;
   secured?: boolean;
 }) => {
-  const { scale, animationStyle } = useScale();
-  useEffect(() => {
-    if (errorMessage != "") {
-      scale.value = SCALE_CONSTANT;
-    }
-  }, [animation]);
+  const { animationStyle } = useScale(animation, errorMessage);
 
   return (
     <Animated.View

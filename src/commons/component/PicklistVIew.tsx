@@ -1,13 +1,21 @@
 import { StyleSheet, ScrollView } from "react-native";
 import React, { useContext } from "react";
-import { size } from "../style";
+import { color, size } from "../style";
 import { TechnologyData } from "../model/index";
 import { SelectableTechnologyTagView } from "./SelectableTechnologyView";
 import { AddProjectContext } from "../../page/addProject/context";
 
-export const PicklistView = ({ tags }: { tags: TechnologyData[] }) => {
+export const PicklistView = ({
+  tags,
+  errorMessage = "",
+  animation = false,
+}: {
+  tags: TechnologyData[];
+  errorMessage?: string;
+  animation?: boolean;
+}) => {
   const { inputs, setInputs } = useContext(AddProjectContext);
-  console.log(inputs);
+
   const toggleTechnologyTag = (id: number) => {
     const chosenTechnologyIds = inputs.technology_ids;
     const idx = chosenTechnologyIds.indexOf(id);
@@ -15,6 +23,7 @@ export const PicklistView = ({ tags }: { tags: TechnologyData[] }) => {
       setInputs((prev: any) => ({
         ...prev,
         technology_ids: [...inputs.technology_ids, id],
+        technology_ids_error: "",
       }));
     } else {
       setInputs((prev: any) => ({
@@ -28,8 +37,14 @@ export const PicklistView = ({ tags }: { tags: TechnologyData[] }) => {
 
   return (
     <ScrollView
-      style={styles.scrollViewContainer}
-      contentContainerStyle={styles.contentContainer}
+      style={[
+        styles.scrollViewContainer,
+        { borderColor: errorMessage !== "" ? color.error : color.borderGrey },
+      ]}
+      contentContainerStyle={[
+        styles.contentContainer,
+        { borderColor: errorMessage !== "" ? color.error : color.borderGrey },
+      ]}
     >
       {tags.map((t) => (
         <SelectableTechnologyTagView
@@ -41,15 +56,24 @@ export const PicklistView = ({ tags }: { tags: TechnologyData[] }) => {
           }}
         />
       ))}
+      <SelectableTechnologyTagView
+        techonolgy={{ name: "", id: -1, resource_url: "", is_hot: false }}
+        selected={false}
+        iconName="add-circle-outline"
+      />
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+  },
   scrollViewContainer: {
     width: "100%",
     borderRadius: size.borderRadius.small,
     flexWrap: "wrap",
+    borderWidth: size.borderWidth.medium,
   },
   contentContainer: {
     justifyContent: "flex-start",

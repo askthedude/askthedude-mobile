@@ -56,6 +56,7 @@ export const size = {
   },
   icon: {
     small: 24,
+    smallplus: 28,
     medium: 35,
     big: 50,
     xbig: 70,

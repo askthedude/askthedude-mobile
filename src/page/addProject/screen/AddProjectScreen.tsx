@@ -76,7 +76,11 @@ const AddProjectScreen = () => {
           />
           <Text>Press relevant technology tags</Text>
           <View style={styles.tagsWrapper}>
-            <PicklistView tags={technologies.technologies} />
+            <PicklistView
+              tags={technologies.technologies}
+              errorMessage={inputs.technology_ids_error}
+              animation={addingProject}
+            />
           </View>
           <Button
             callback={() => {
