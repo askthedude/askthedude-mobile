@@ -47,14 +47,12 @@ const styles = StyleSheet.create({
     paddingVertical: size.padding.small,
   },
   urlContainer: {
-    maxWidth: "45%",
     height: size.height.medium,
     padding: size.padding.xsmall,
     backgroundColor: color.primary,
     borderRadius: size.borderRadius.small,
     justifyContent: "center",
     alignItems: "center",
-    overflow: "hidden",
   },
   detailsContainer: {
     flexDirection: "row",

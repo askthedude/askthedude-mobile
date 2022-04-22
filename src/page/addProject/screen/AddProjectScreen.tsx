@@ -28,7 +28,7 @@ const AddProjectScreen = () => {
       {addProject.loading === "pending" ? (
         <Loading />
       ) : (
-        <>
+        <View style={styles.formWrapper}>
           <TitleView
             text={"Add new rockstar project"}
             inputStyle={styles.titleContainer}
@@ -105,7 +105,7 @@ const AddProjectScreen = () => {
           ) : addProject.loading === "failed" ? (
             <TitleView text={"Failed to added project"} />
           ) : null}
-        </>
+        </View>
       )}
     </SafeAreaView>
   );
@@ -124,8 +124,12 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     flex: 1,
   },
+  formWrapper: {
+    width: "100%",
+    alignItems: "center",
+  },
   tagsWrapper: {
-    width: size.width.big,
+    width: size.width.bigplus,
     maxHeight: size.height.xxbig,
     borderRadius: size.borderRadius.medium,
     backgroundColor: color.white,

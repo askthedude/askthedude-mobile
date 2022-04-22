@@ -1,9 +1,8 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import { View, Text, StyleSheet, ScrollView, Modal } from "react-native";
+import React, { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { TechnologyTagView } from "../../../commons/component/TechnologyTagView";
 import UpvotesView from "../../../commons/component/UpvotesView";
-import UserInfoView from "../../../commons/component/UserInfoView";
 import ProjectDetails from "../../../commons/component/ProjectDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
@@ -19,13 +18,15 @@ import TitleView from "../../../commons/component/TitleView";
 import { NavigationScreenHeader } from "../../../commons/component/NavigationScreenHeader";
 import { TextView } from "../../../commons/component/TextView";
 import { SeenView } from "../../../commons/component/SeenView";
+import { AddSubscriptionModal } from "../../../commons/component/AddSubscriptionModal";
+import Button from "../../../commons/component/ButtonView";
 
 export const ProjectScreen = () => {
   const route: any = useRoute();
   const { projectId } = route.params;
   const dispatch = useDispatch();
   const { project, loading } = useSelector((state: RootState) => state.project);
-
+  const [modalVisible, setModalVisible] = useState(false);
   const apiCommunication = async () => {
     await Promise.all([dispatch(getProjectById(projectId))]);
     await Promise.all([
@@ -36,6 +37,10 @@ export const ProjectScreen = () => {
   useEffect(() => {
     apiCommunication();
   }, [projectId]);
+
+  const toggleModal = () => {
+    setModalVisible((prev) => !prev);
+  };
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
@@ -74,8 +79,25 @@ export const ProjectScreen = () => {
                 start_date={project?.start_date}
               />
               {/* <UserInfoView user={project?.users[0]} /> */}
+              <View style={styles.subscribeWrapper}>
+                <TextView
+                  text={
+                    "Subscribe to project's up to date activities, to get the information"
+                  }
+                  textStyle={{ fontSize: size.font.medium }}
+                />
+                <Button
+                  callback={() => {
+                    toggleModal();
+                  }}
+                  text={"Subscribe"}
+                />
+              </View>
             </View>
           </ScrollView>
+          {modalVisible ? (
+            <AddSubscriptionModal closeCallback={() => toggleModal()} />
+          ) : null}
         </>
       )}
     </SafeAreaView>
@@ -123,6 +145,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+  },
+  subscribeWrapper: {
+    justifyContent: "center",
+    alignItems: "center",
   },
   upvotesWrapper: {
     marginHorizontal: size.margin.medium,

@@ -24,6 +24,7 @@ export const size = {
     mediumplus: 15,
     big: 20,
     xbig: 30,
+    toobig: 50,
   },
   padding: {
     xsmall: 5,
@@ -48,7 +49,9 @@ export const size = {
   },
   width: {
     xsmall: 70,
+    small: 110,
     big: 250,
+    bigplus: 300,
     xbig: 360,
   },
   borderWidth: {
