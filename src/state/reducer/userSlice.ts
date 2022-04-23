@@ -5,13 +5,13 @@ import { requestApi } from "../../commons/api/index";
 export interface UserState {
   loading: "idle" | "pending" | "succeeded" | "failed";
   user: UserData | undefined;
-  token: string | undefined;
+  jwttoken: string | undefined;
 }
 
 const initialState: UserState = {
   loading: "idle",
   user: undefined,
-  token: undefined,
+  jwttoken: undefined,
 };
 
 export type UserLogin = {
@@ -26,6 +26,11 @@ export type UserSignup = {
   email: string;
   github_url: string;
   linkedin_url: string;
+  identifier_token: string;
+};
+
+export type IdentifierTokenAdd = {
+  identifier_token: string;
 };
 
 export const userLogin = createAsyncThunk(
@@ -52,45 +57,61 @@ export const userSignup = createAsyncThunk(
   }
 );
 
+export const anonymousTokenAdd = createAsyncThunk(
+  "user/anonymous/token",
+  async (anonymousData: IdentifierTokenAdd, thunkAPI) => {
+    try {
+      const response: any = await requestApi(
+        "api/user/anonymous",
+        "POST",
+        anonymousData
+      );
+      return response.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     signout(state) {
       state.user = undefined;
-      state.token = undefined;
+      state.jwttoken = undefined;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(userLogin.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.jwttoken = action.payload.token;
         state.loading = "succeeded";
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.user = undefined;
-        state.token = undefined;
+        state.jwttoken = undefined;
         state.loading = "failed";
       })
       .addCase(userLogin.pending, (state, action) => {
         state.user = undefined;
-        state.token = undefined;
+        state.jwttoken = undefined;
         state.loading = "pending";
       })
       .addCase(userSignup.pending, (state, action) => {
         state.user = undefined;
-        state.token = undefined;
+        state.jwttoken = undefined;
         state.loading = "pending";
       })
       .addCase(userSignup.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.jwttoken = action.payload.token;
         state.loading = "succeeded";
       })
       .addCase(userSignup.rejected, (state, action) => {
         state.user = undefined;
-        state.token = undefined;
+        state.jwttoken = undefined;
         state.loading = "failed";
       });
   },

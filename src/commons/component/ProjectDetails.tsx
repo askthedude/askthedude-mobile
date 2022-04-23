@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Linking, Alert } from "react-native";
 import React from "react";
-import { StatisticsData } from "../model";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { color, size } from "../style";
 

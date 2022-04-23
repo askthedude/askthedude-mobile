@@ -2,9 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-type Props = {};
-
-export const Notifications = (props: Props) => {
+export const Recommendations = () => {
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
       <View>

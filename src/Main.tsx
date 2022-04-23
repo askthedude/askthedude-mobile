@@ -6,8 +6,6 @@ import { MainNavigation } from "./navigation/MainNavigation";
 import { store } from "./state/store/index";
 
 export default () => {
-  useEffect(() => {}, []);
-
   return (
     <View style={styles.container}>
       <Provider store={store}>

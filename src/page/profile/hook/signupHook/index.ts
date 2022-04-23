@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getValueSecure } from "../../../../commons/storage";
 import { validateEmail } from "../../../../commons/utils/validation";
+import { DEVICE_UNIQUE_IDENTIFIER_KEY } from "../../../../constants";
 import { userSignup, UserSignup } from "../../../../state/reducer/userSlice";
+import { RootState } from "../../../../state/store";
 
 export const useSignUp = () => {
   const [signingUp, setSigningUp] = useState(false);
@@ -25,7 +28,7 @@ export const useSignUp = () => {
 
   const dispatch = useDispatch();
 
-  const signup = (inputs: any) => {
+  const signup = async (inputs: any) => {
     let valid = true;
     if (inputs.name === "") {
       setInputs((prev) => ({ ...prev, name_error: "Please input Name" }));
@@ -58,6 +61,8 @@ export const useSignUp = () => {
       setInputs((prev) => ({ ...prev, email_error: "" }));
     }
     if (valid) {
+      let token = await getValueSecure(DEVICE_UNIQUE_IDENTIFIER_KEY);
+
       const signupuser = {
         name: inputs.name,
         username: inputs.username,
@@ -65,6 +70,7 @@ export const useSignUp = () => {
         email: inputs.email,
         github_url: inputs.github_url,
         linkedin_url: inputs.linkedin_url,
+        identifier_token: token,
       } as UserSignup;
       dispatch(userSignup(signupuser));
     }

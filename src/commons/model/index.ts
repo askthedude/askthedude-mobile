@@ -23,6 +23,10 @@ export interface CompleteProjectData {
   stats: StatisticsData;
 }
 
+export interface AddedIdTokenData {
+  idToken: string;
+}
+
 export interface TechnologyData {
   id: number;
   name: string;
@@ -43,6 +47,7 @@ export interface UserData {
   name: string;
   is_active: boolean;
   linkedin_url: string;
+  identifier_token: string;
 }
 
 export interface StatisticsData {

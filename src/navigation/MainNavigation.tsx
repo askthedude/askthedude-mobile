@@ -4,14 +4,16 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { HomePage } from "../page/homepage/index";
 import { ProfilePage } from "../page/profile/index";
-import { Notifications } from "../page/notifications/index";
+import { Recommendations } from "../page/recommendations/index";
 import { size } from "../commons/style";
 import { AddProject } from "../page/addProject";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useDeviceTokenHook } from "../commons/hook/deviceTokenHook";
 
 const Tab = createBottomTabNavigator();
 
 export const MainNavigation = () => {
+  useDeviceTokenHook();
   return (
     <SafeAreaProvider>
       <NavigationContainer>
@@ -47,8 +49,8 @@ export const MainNavigation = () => {
             }}
           />
           <Tab.Screen
-            name="Notifications"
-            component={Notifications}
+            name="Reccomendations"
+            component={Recommendations}
             options={{
               tabBarIcon: ({}) => (
                 <Ionicons

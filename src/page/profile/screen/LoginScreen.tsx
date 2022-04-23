@@ -15,7 +15,7 @@ import { useLogin } from "../hook/loginHook/useLogin";
 export const LoginScreen = () => {
   const navigation: any = useNavigation();
   const signup = () => {
-    navigation.navigate("Signup", {});
+    navigation.navigate("MainProfile", { screen: "Signup" });
   };
   const { loading } = useSelector((state: RootState) => state.user);
   const { inputs, setPassword, setUsername, setLoging, loging } = useLogin();
