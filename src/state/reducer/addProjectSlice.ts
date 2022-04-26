@@ -37,7 +37,6 @@ export const addProject = createAsyncThunk(
       );
       return response.data;
     } catch (err) {
-      console.log(err);
       return thunkAPI.rejectWithValue(err);
     }
   }

@@ -39,13 +39,11 @@ export const ProjectScreen = () => {
   }, [projectId]);
 
   const toggleModal = () => {
-    console.log("wtf");
     setModalVisible((prev) => !prev);
   };
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
-      {console.log(modalVisible)}
       {loading === "pending" ? (
         <Loading />
       ) : (

@@ -25,7 +25,7 @@ export const filterTechnology = createAsyncThunk(
   async (technologyFilter: TechnologyFilter, thunkAPI) => {
     try {
       const response: any = await requestApi(
-        "api/technology/filter",
+        "api/technology/filter/",
         "POST",
         technologyFilter
       );

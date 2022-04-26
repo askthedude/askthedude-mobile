@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import { Alert, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-native";
 import Button from "./ButtonView";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -48,6 +48,7 @@ export const AddSubscriptionModal = ({
       } as SubscriptionData;
       dispatch(addSubscription(subscription));
       closeCallback();
+      Alert.alert("Succesfully subscribed to Project newsteller.");
       setSent(false);
     }
   };
