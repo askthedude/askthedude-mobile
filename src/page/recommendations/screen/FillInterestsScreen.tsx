@@ -1,5 +1,5 @@
 import { View, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TitleView from "../../../commons/component/TitleView";
 import { PicklistView } from "../../../commons/component/PicklistVIew";
@@ -23,8 +23,15 @@ export const FillInterestsScreen = () => {
     dispatch(filterTechnology(getAllTechnologiesObj()));
   }, []);
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
-    <SafeAreaView style={styles.safeAreaViewcontainer}>
+    <SafeAreaView
+      style={[
+        styles.safeAreaViewcontainer,
+        modalVisible ? styles.dimmedColor : {},
+      ]}
+    >
       <TitleView text="Recommendations" />
       <TextView
         text="Fill in the technologies you are interested in. Platform will list and later notify you if matching projects come up."
@@ -35,6 +42,8 @@ export const FillInterestsScreen = () => {
           tags={technologies.technologies}
           isSelected={() => false}
           toggleSelection={() => {}}
+          toggleAddition={() => setModalVisible((prev) => !prev)}
+          adding={modalVisible}
         />
       </View>
     </SafeAreaView>
@@ -56,5 +65,11 @@ const styles = StyleSheet.create({
   picklistWrapper: {
     width: "90%",
     backgroundColor: color.white,
+  },
+  dimmedColor: {
+    backgroundColor: color.dimBackground.color,
+  },
+  dimmedOpacity: {
+    opacity: color.dimBackground.opacity,
   },
 });

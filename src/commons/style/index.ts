@@ -9,6 +9,11 @@ export const color = {
   darkblue: "#00124A",
   error: "#ff5555",
   green: "#20C28D",
+  shadowColor: "#470000",
+  dimBackground: {
+    color: "rgba(69, 69, 69, 0.7)",
+    opacity: 0.08,
+  },
 };
 
 export const size = {
@@ -60,6 +65,7 @@ export const size = {
     xbig: 360,
   },
   borderWidth: {
+    zero: 0,
     small: 1,
     medium: 2,
   },

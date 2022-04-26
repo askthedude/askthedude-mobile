@@ -120,10 +120,10 @@ const styles = StyleSheet.create({
     backgroundColor: color.backgroundPink,
   },
   dimmedColor: {
-    backgroundColor: "rgba(69, 69, 69, 0.7)",
+    backgroundColor: color.dimBackground.color,
   },
   dimmedOpacity: {
-    opacity: size.shadowOpacity.weak,
+    opacity: color.dimBackground.opacity,
   },
   container: {
     flex: 1,
@@ -137,9 +137,9 @@ const styles = StyleSheet.create({
     padding: size.padding.small,
     backgroundColor: color.white,
     borderRadius: size.borderRadius.small,
-    shadowColor: "#470000",
+    shadowColor: color.shadowColor,
     shadowOffset: { width: size.width.zero, height: size.height.one },
-    shadowOpacity: size.shadowOpacity.weak,
+    shadowOpacity: color.dimBackground.opacity,
     elevation: 1,
   },
   descriptionContainer: {
