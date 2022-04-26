@@ -8,17 +8,22 @@ export const NavigationScreenHeader = ({
   text,
   otherStyles = {},
   textStyles = {},
+  tinctColor = color.primary,
 }: {
   text: string;
   otherStyles?: any;
   textStyles?: any;
+  tinctColor?: string;
 }) => {
   const navigation = useNavigation();
 
   return (
     <View style={[styles.container, otherStyles]}>
       <View style={styles.backContainer}>
-        <HeaderBackButton onPress={() => navigation.goBack()} />
+        <HeaderBackButton
+          onPress={() => navigation.goBack()}
+          tintColor={tinctColor}
+        />
       </View>
       <View style={styles.titleContainer}>
         <Text style={[styles.title, textStyles]}>{text}</Text>

@@ -47,14 +47,17 @@ export const ProjectScreen = () => {
       {loading === "pending" ? (
         <Loading />
       ) : (
-        <>
-          <NavigationScreenHeader text={"Project"} />
-          <ScrollView
-            contentContainerStyle={[
-              styles.container,
-              modalVisible ? styles.dimmedColor : {},
-            ]}
-          >
+        <View style={[{ flex: 1 }, modalVisible ? styles.dimmedColor : {}]}>
+          <NavigationScreenHeader
+            text={"Project"}
+            tinctColor={
+              modalVisible ? styles.dimmedColor.backgroundColor : color.primary
+            }
+            textStyles={
+              modalVisible ? { color: styles.dimmedColor.backgroundColor } : {}
+            }
+          />
+          <ScrollView contentContainerStyle={[styles.container]}>
             <View
               style={[
                 styles.upperContainer,
@@ -110,7 +113,7 @@ export const ProjectScreen = () => {
               projectId={projectId}
             />
           ) : null}
-        </>
+        </View>
       )}
     </SafeAreaView>
   );
@@ -122,10 +125,10 @@ const styles = StyleSheet.create({
     backgroundColor: color.backgroundPink,
   },
   dimmedColor: {
-    backgroundColor: "rgba(55, 55, 55, 0.8)",
+    backgroundColor: "rgba(69, 69, 69, 0.7)",
   },
   dimmedOpacity: {
-    opacity: 0.2,
+    opacity: size.shadowOpacity.weak,
   },
   container: {
     flex: 1,
@@ -140,8 +143,8 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
     borderRadius: size.borderRadius.small,
     shadowColor: "#470000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.3,
+    shadowOffset: { width: size.width.zero, height: size.height.one },
+    shadowOpacity: size.shadowOpacity.weak,
     elevation: 1,
   },
   descriptionContainer: {

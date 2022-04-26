@@ -97,7 +97,8 @@ const styles = StyleSheet.create({
     backgroundColor: color.backgroundPink,
     borderTopEndRadius: size.borderRadius.xbig,
     borderTopStartRadius: size.borderRadius.xbig,
-    paddingVertical: size.padding.big,
+    paddingVertical: size.padding.xxbig,
+    paddingHorizontal: size.padding.small,
     top: "45%",
   },
   inputAddonStyles: {

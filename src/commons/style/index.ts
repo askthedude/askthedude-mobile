@@ -32,7 +32,7 @@ export const size = {
     medium: 18,
     big: 25,
     xbig: 30,
-    xxbig: 35,
+    xxbig: 40,
   },
   borderRadius: {
     xsmall: 3,
@@ -41,6 +41,8 @@ export const size = {
     xbig: 30,
   },
   height: {
+    zero: 0,
+    one: 1,
     xsmall: 20,
     small: 35,
     medium: 40,
@@ -49,6 +51,8 @@ export const size = {
     xxbig: 170,
   },
   width: {
+    zero: 0,
+    one: 1,
     xsmall: 70,
     small: 110,
     big: 250,
@@ -65,5 +69,8 @@ export const size = {
     medium: 35,
     big: 50,
     xbig: 70,
+  },
+  shadowOpacity: {
+    weak: 0.3,
   },
 };
