@@ -9,7 +9,7 @@ import { NavigationScreenHeader } from "../../../commons/component/NavigationScr
 import { TextView } from "../../../commons/component/TextView";
 
 const SignupScreen = () => {
-  const { inputs, setInputs, setSigningUp, signingUp } = useSignUp();
+  const { inputs, setInputs, setSigningUp, signingUp, messages } = useSignUp();
   return (
     <SafeAreaView style={styles.container}>
       <NavigationScreenHeader text={"Sign up"} />
@@ -63,6 +63,7 @@ const SignupScreen = () => {
         }}
         text={"Sign up"}
       />
+      {messages && messages.map((e) => <TextView text={e} />)}
     </SafeAreaView>
   );
 };

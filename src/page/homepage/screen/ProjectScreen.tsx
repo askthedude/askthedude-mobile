@@ -124,6 +124,10 @@ const styles = StyleSheet.create({
     padding: size.padding.small,
     backgroundColor: color.white,
     borderRadius: size.borderRadius.small,
+    shadowColor: "#470000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.3,
+    elevation: 1,
   },
   descriptionContainer: {
     maxWidth: "70%",

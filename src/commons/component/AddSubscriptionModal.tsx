@@ -1,5 +1,5 @@
 import { StyleSheet, Alert } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "react-native";
 import Button from "./ButtonView";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -42,6 +42,12 @@ export const AddSubscriptionModal = ({
       dispatch(addSubscription(subscription));
     }
   };
+
+  useEffect(() => {
+    if (loading === "succeeded" || loading === "failed") {
+      closeCallback();
+    }
+  }, [loading]);
 
   return (
     <Modal animationType={"slide"}>

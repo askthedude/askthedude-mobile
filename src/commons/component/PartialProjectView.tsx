@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
     marginVertical: size.margin.small,
     borderRadius: size.borderRadius.small,
+    shadowColor: "#470000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    elevation: 1,
   },
   upperContainer: {
     flex: 1,
@@ -80,6 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: color.lighterGrey,
     padding: size.padding.xsmall,
+    borderRadius: size.borderRadius.small,
   },
   tagsContainer: { flexDirection: "row", alignItems: "flex-start" },
 });

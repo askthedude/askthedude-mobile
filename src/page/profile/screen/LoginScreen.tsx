@@ -11,13 +11,16 @@ import { color, size } from "../../../commons/style";
 import Input from "../../../commons/component/InputView";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLogin } from "../hook/loginHook/useLogin";
+import { TextView } from "../../../commons/component/TextView";
 
 export const LoginScreen = () => {
   const navigation: any = useNavigation();
   const signup = () => {
     navigation.navigate("MainProfile", { screen: "Signup" });
   };
-  const { loading } = useSelector((state: RootState) => state.user);
+  const { loading, loginErrors } = useSelector(
+    (state: RootState) => state.user
+  );
   const { inputs, setPassword, setUsername, setLoging, loging } = useLogin();
 
   return (
@@ -65,16 +68,17 @@ export const LoginScreen = () => {
                 text={"Sign up"}
                 inputBackgroundColor={"white"}
                 inputFontColor={color.primary}
-                inputWidth={120}
-                inputHeight={35}
-                inputBorderWidth={1}
-                otherStyles={{ marginVertical: 20 }}
+                inputWidth={size.width.small}
+                inputHeight={size.height.small}
+                inputBorderWidth={size.borderWidth.small}
+                otherStyles={{ marginVertical: size.margin.big }}
                 callback={() => {
                   signup();
                 }}
               />
             </View>
           </View>
+          {loginErrors && loginErrors.map((e) => <TextView key={e} text={e} />)}
         </>
       )}
     </SafeAreaView>

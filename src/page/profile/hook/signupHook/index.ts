@@ -18,6 +18,7 @@ export const useSignUp = () => {
     email: "",
     email_error: "",
   });
+  const messages = useSelector((root: RootState) => root.user.signupErrors);
 
   useEffect(() => {
     if (signingUp) {
@@ -76,5 +77,5 @@ export const useSignUp = () => {
     }
   };
 
-  return { inputs, setInputs, setSigningUp, signingUp };
+  return { inputs, setInputs, setSigningUp, signingUp, messages };
 };

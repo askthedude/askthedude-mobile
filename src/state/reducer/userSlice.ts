@@ -1,17 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { UserData } from "../../commons/model/index";
 import { requestApi } from "../../commons/api/index";
+import { handleAxiosError, handleReduxReject } from "../utils";
 
 export interface UserState {
   loading: "idle" | "pending" | "succeeded" | "failed";
   user: UserData | undefined;
   jwttoken: string | undefined;
+  signupErrors: string[];
+  loginErrors: string[];
 }
 
 const initialState: UserState = {
   loading: "idle",
   user: undefined,
   jwttoken: undefined,
+  signupErrors: [],
+  loginErrors: [],
 };
 
 export type UserLogin = {
@@ -39,8 +44,8 @@ export const userLogin = createAsyncThunk(
     try {
       const response: any = await requestApi("api/signin", "POST", loginData);
       return response.data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err);
+    } catch (err: any) {
+      return handleAxiosError(err, thunkAPI);
     }
   }
 );
@@ -51,8 +56,8 @@ export const userSignup = createAsyncThunk(
     try {
       const response: any = await requestApi("api/signup", "POST", signupData);
       return response.data;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err);
+    } catch (err: any) {
+      return handleAxiosError(err, thunkAPI);
     }
   }
 );
@@ -88,31 +93,37 @@ export const userSlice = createSlice({
         state.user = action.payload.user;
         state.jwttoken = action.payload.token;
         state.loading = "succeeded";
+        state.loginErrors = [];
       })
-      .addCase(userLogin.rejected, (state, action) => {
+      .addCase(userLogin.rejected, (state, action: any) => {
         state.user = undefined;
         state.jwttoken = undefined;
         state.loading = "failed";
+        handleReduxReject(action, state, "loginErrors");
       })
       .addCase(userLogin.pending, (state, action) => {
         state.user = undefined;
         state.jwttoken = undefined;
         state.loading = "pending";
+        state.loginErrors = [];
       })
       .addCase(userSignup.pending, (state, action) => {
         state.user = undefined;
         state.jwttoken = undefined;
         state.loading = "pending";
+        state.signupErrors = [];
       })
       .addCase(userSignup.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.jwttoken = action.payload.token;
         state.loading = "succeeded";
+        state.signupErrors = [];
       })
-      .addCase(userSignup.rejected, (state, action) => {
+      .addCase(userSignup.rejected, (state, action: any) => {
         state.user = undefined;
         state.jwttoken = undefined;
         state.loading = "failed";
+        handleReduxReject(action, state, "signupErrors");
       });
   },
 });
