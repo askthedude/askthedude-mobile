@@ -7,9 +7,7 @@ import { TechnologyData } from "../../../commons/model";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 
-type Props = {};
-
-export const FillInterestsScreen = (props: Props) => {
+export const FillInterestsScreen = () => {
   const { technologies }: { technologies: TechnologyData[] } = useSelector(
     (state: RootState) => state.technologies
   );
@@ -18,7 +16,11 @@ export const FillInterestsScreen = (props: Props) => {
     <SafeAreaView style={styles.safeAreaViewcontainer}>
       <TitleView text="Recommendations" />
       <View style={styles.picklistWrapper}>
-        <PicklistView tags={technologies} />
+        <PicklistView
+          tags={technologies}
+          isSelected={() => false}
+          toggleSelection={() => {}}
+        />
       </View>
     </SafeAreaView>
   );

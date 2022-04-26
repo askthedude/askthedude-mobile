@@ -50,7 +50,13 @@ export const AddSubscriptionModal = ({
   }, [loading]);
 
   return (
-    <Modal animationType={"slide"}>
+    <Modal
+      animationType={"slide"}
+      onRequestClose={() => {
+        closeCallback();
+      }}
+      transparent={true}
+    >
       <SafeAreaView style={styles.container}>
         {loading === "pending" ? (
           <Loading />
@@ -72,6 +78,9 @@ export const AddSubscriptionModal = ({
               callback={() => closeCallback()}
               text={"Close"}
               otherStyles={styles.closeButtonAddonStyles}
+              inputBackgroundColor={"white"}
+              inputFontColor={color.primary}
+              inputHeight={size.height.small}
             />
           </>
         )}
@@ -86,9 +95,10 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     backgroundColor: color.backgroundPink,
-    borderTopEndRadius: 30,
-    borderTopStartRadius: 30,
+    borderTopEndRadius: size.borderRadius.xbig,
+    borderTopStartRadius: size.borderRadius.xbig,
     paddingVertical: size.padding.big,
+    top: "45%",
   },
   inputAddonStyles: {
     marginVertical: size.margin.big,

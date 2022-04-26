@@ -1,9 +1,7 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-type Props = {};
-
-export const RecommendationsScreen = (props: Props) => {
+export const RecommendationsScreen = () => {
   return (
     <View>
       <Text>RecommendationsScreen</Text>

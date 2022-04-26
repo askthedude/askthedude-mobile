@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Modal } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { TechnologyTagView } from "../../../commons/component/TechnologyTagView";
@@ -49,8 +49,18 @@ export const ProjectScreen = () => {
       ) : (
         <>
           <NavigationScreenHeader text={"Project"} />
-          <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.upperContainer}>
+          <ScrollView
+            contentContainerStyle={[
+              styles.container,
+              modalVisible ? styles.dimmedColor : {},
+            ]}
+          >
+            <View
+              style={[
+                styles.upperContainer,
+                modalVisible ? styles.dimmedOpacity : {},
+              ]}
+            >
               <TitleView text={project?.title} />
               <Text style={styles.author}>
                 By: {project?.users[0].username}
@@ -78,7 +88,6 @@ export const ProjectScreen = () => {
                 project_url={project?.url}
                 start_date={project?.start_date}
               />
-              {/* <UserInfoView user={project?.users[0]} /> */}
               <View style={styles.subscribeWrapper}>
                 <TextView
                   text={
@@ -111,6 +120,12 @@ const styles = StyleSheet.create({
   safeAreaViewcontainer: {
     flex: 1,
     backgroundColor: color.backgroundPink,
+  },
+  dimmedColor: {
+    backgroundColor: "rgba(55, 55, 55, 0.8)",
+  },
+  dimmedOpacity: {
+    opacity: 0.2,
   },
   container: {
     flex: 1,

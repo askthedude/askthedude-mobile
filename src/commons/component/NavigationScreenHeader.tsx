@@ -16,7 +16,7 @@ export const NavigationScreenHeader = ({
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, otherStyles]}>
       <View style={styles.backContainer}>
         <HeaderBackButton onPress={() => navigation.goBack()} />
       </View>
