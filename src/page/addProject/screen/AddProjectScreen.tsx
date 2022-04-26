@@ -23,6 +23,27 @@ const AddProjectScreen = () => {
   }: { technologies: TechnologyState; addProject: AddProjectState } =
     useSelector((state: RootState) => state);
 
+  const toggleTechnologyTag = (id: number) => {
+    const chosenTechnologyIds = inputs.technology_ids;
+    if (chosenTechnologyIds) {
+      const idx = chosenTechnologyIds.indexOf(id);
+      if (idx == -1) {
+        setInputs((prev: any) => ({
+          ...prev,
+          technology_ids: [...inputs.technology_ids, id],
+          technology_ids_error: "",
+        }));
+      } else {
+        setInputs((prev: any) => ({
+          ...prev,
+          technology_ids: [
+            ...inputs.technology_ids.filter((_: any, i: number) => i !== idx),
+          ],
+        }));
+      }
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       {addProject.loading === "pending" ? (
@@ -91,7 +112,10 @@ const AddProjectScreen = () => {
             <PicklistView
               tags={technologies.technologies}
               errorMessage={inputs.technology_ids_error}
-              animation={addingProject}
+              isSelected={(id: number) =>
+                inputs.technology_ids && inputs.technology_ids.includes(id)
+              }
+              toggleSelection={(id) => toggleTechnologyTag(id)}
             />
           </View>
           <Button
