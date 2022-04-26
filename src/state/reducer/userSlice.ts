@@ -124,6 +124,11 @@ export const userSlice = createSlice({
         state.jwttoken = undefined;
         state.loading = "failed";
         handleReduxReject(action, state, "signupErrors");
+      })
+      .addCase(anonymousTokenAdd.fulfilled, (state, action) => {
+        if (state.user) {
+          state.user.identifier_token = action.payload.identifier_token;
+        }
       });
   },
 });
