@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import React from "react";
-import { RecommendationsNavigator } from "./navigation.tsx";
+import { RecommendationsNavigator } from "./navigation";
 
 export const Recommendations = () => {
   return (
