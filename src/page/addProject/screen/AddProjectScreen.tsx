@@ -18,7 +18,7 @@ const AddProjectScreen = () => {
     useContext(AddProjectContext);
 
   const {
-    technologies, //todo: use this array for tech tags
+    technologies,
     addProject,
   }: { technologies: TechnologyState; addProject: AddProjectState } =
     useSelector((state: RootState) => state);
@@ -50,7 +50,7 @@ const AddProjectScreen = () => {
                 description_error: "",
               }));
             }}
-            containerStyle={{ height: 120 }}
+            containerStyle={{ height: size.height.xbig }}
             errorMessage={inputs.description_error}
             animation={addingProject}
           />

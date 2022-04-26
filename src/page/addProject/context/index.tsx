@@ -38,7 +38,7 @@ export const AppProjectContextProvider = ({ children }: { children: any }) => {
     technology_ids: [],
     technology_ids_error: "",
   });
-  const { token }: { token: string | undefined } = useSelector(
+  const { jwttoken }: { jwttoken: string | undefined } = useSelector(
     (state: RootState) => state.user
   );
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ export const AppProjectContextProvider = ({ children }: { children: any }) => {
           url: inputs.url,
           stars: 1,
         } as AddProject;
-        dispatch(addProject({ project: proj, token }));
+        dispatch(addProject({ project: proj, token: jwttoken }));
       }
       setAddingProject(false);
     }

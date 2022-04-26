@@ -18,20 +18,22 @@ export const PicklistView = ({
 
   const toggleTechnologyTag = (id: number) => {
     const chosenTechnologyIds = inputs.technology_ids;
-    const idx = chosenTechnologyIds.indexOf(id);
-    if (idx == -1) {
-      setInputs((prev: any) => ({
-        ...prev,
-        technology_ids: [...inputs.technology_ids, id],
-        technology_ids_error: "",
-      }));
-    } else {
-      setInputs((prev: any) => ({
-        ...prev,
-        technology_ids: [
-          ...inputs.technology_ids.filter((_: any, i: number) => i !== idx),
-        ],
-      }));
+    if (chosenTechnologyIds) {
+      const idx = chosenTechnologyIds.indexOf(id);
+      if (idx == -1) {
+        setInputs((prev: any) => ({
+          ...prev,
+          technology_ids: [...inputs.technology_ids, id],
+          technology_ids_error: "",
+        }));
+      } else {
+        setInputs((prev: any) => ({
+          ...prev,
+          technology_ids: [
+            ...inputs.technology_ids.filter((_: any, i: number) => i !== idx),
+          ],
+        }));
+      }
     }
   };
 
@@ -50,7 +52,9 @@ export const PicklistView = ({
         <SelectableTechnologyTagView
           key={t.id}
           techonolgy={t}
-          selected={inputs.technology_ids.includes(t.id)}
+          selected={
+            inputs.technology_ids && inputs.technology_ids.includes(t.id)
+          }
           pressCallback={() => {
             toggleTechnologyTag(t.id);
           }}
