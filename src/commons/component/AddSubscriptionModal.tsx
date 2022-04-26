@@ -1,5 +1,5 @@
-import { StyleSheet, Alert } from "react-native";
-import React, { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import { Modal } from "react-native";
 import Button from "./ButtonView";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -25,7 +25,14 @@ export const AddSubscriptionModal = ({
     errorMessage: "",
   });
   const { loading } = useSelector((root: RootState) => root.addSubscription);
+  const [sent, setSent] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (sent) {
+      addNewSubscription();
+    }
+  }, [sent]);
 
   const addNewSubscription = () => {
     if (
@@ -40,14 +47,10 @@ export const AddSubscriptionModal = ({
         project_id: projectId,
       } as SubscriptionData;
       dispatch(addSubscription(subscription));
+      closeCallback();
+      setSent(false);
     }
   };
-
-  useEffect(() => {
-    if (loading === "succeeded" || loading === "failed") {
-      closeCallback();
-    }
-  }, [loading]);
 
   return (
     <Modal
@@ -70,10 +73,11 @@ export const AddSubscriptionModal = ({
               errorMessage={emailInput.errorMessage}
             />
             <Button
-              callback={() => addNewSubscription()}
+              callback={() => setSent(true)}
               text={"Subscribe"}
               otherStyles={styles.subscribeButtonAddonStyles}
             />
+
             <Button
               callback={() => closeCallback()}
               text={"Close"}

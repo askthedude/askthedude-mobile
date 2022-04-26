@@ -1,5 +1,6 @@
-import { View, StyleSheet, SafeAreaView } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import TitleView from "../../../commons/component/TitleView";
 import { PicklistView } from "../../../commons/component/PicklistVIew";
 import { color, size } from "../../../commons/style";

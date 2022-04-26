@@ -39,11 +39,13 @@ export const ProjectScreen = () => {
   }, [projectId]);
 
   const toggleModal = () => {
+    console.log("wtf");
     setModalVisible((prev) => !prev);
   };
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
+      {console.log(modalVisible)}
       {loading === "pending" ? (
         <Loading />
       ) : (
@@ -98,12 +100,7 @@ export const ProjectScreen = () => {
                   }
                   textStyle={{ fontSize: size.font.medium }}
                 />
-                <Button
-                  callback={() => {
-                    toggleModal();
-                  }}
-                  text={"Subscribe"}
-                />
+                <Button callback={() => toggleModal()} text={"Subscribe"} />
               </View>
             </View>
           </ScrollView>

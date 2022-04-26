@@ -1,6 +1,5 @@
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { color } from "../style";
 
 const DEFAULT_WIDTH = 240;
