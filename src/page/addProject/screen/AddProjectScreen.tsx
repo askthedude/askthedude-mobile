@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { color, size } from "../../../commons/style";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
@@ -22,6 +22,8 @@ const AddProjectScreen = () => {
     addProject,
   }: { technologies: TechnologyState; addProject: AddProjectState } =
     useSelector((state: RootState) => state);
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const toggleTechnologyTag = (id: number) => {
     const chosenTechnologyIds = inputs.technology_ids;
@@ -116,6 +118,8 @@ const AddProjectScreen = () => {
                 inputs.technology_ids && inputs.technology_ids.includes(id)
               }
               toggleSelection={(id) => toggleTechnologyTag(id)}
+              toggleAddition={() => setModalVisible((prev) => !prev)}
+              adding={modalVisible}
             />
           </View>
           <Button

@@ -20,6 +20,14 @@ export const saveKeyValue = async (key: string, value: any) => {
   }
 };
 
+export const removeKeyValue = async (key: string) => {
+  try {
+    await AsyncStorage.removeItem(key);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getValue = async (key: string) => {
   try {
     const jsonValue = await AsyncStorage.getItem(key);

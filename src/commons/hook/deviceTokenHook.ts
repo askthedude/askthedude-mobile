@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import "react-native-get-random-values";
-import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 import { DEVICE_UNIQUE_IDENTIFIER_KEY } from "../../constants";
-import { anonymousTokenAdd } from "../../state/reducer/userSlice";
 import { getValueSecure, saveKeyValueSecure } from "../storage";
+import { useDispatch } from "react-redux";
+import { getInterestedTechnologiesFromLocalStorage } from "../../state/reducer/technologyInterestsSlice";
 
 export const useDeviceTokenHook = () => {
   const persistDeviceIdentifier = async () => {
@@ -18,10 +18,7 @@ export const useDeviceTokenHook = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    persistDeviceIdentifier()
-      .then((res) =>
-        dispatch(anonymousTokenAdd({ identifier_token: res || "" }))
-      )
-      .catch((err) => console.log(err));
+    persistDeviceIdentifier();
+    dispatch(getInterestedTechnologiesFromLocalStorage());
   }, []);
 };

@@ -12,11 +12,21 @@ import {
   getAllTechnologiesObj,
 } from "../../../state/reducer/technologySlice";
 import { TextView } from "../../../commons/component/TextView";
+import {
+  addInterestedTechnologyInLocalStorage,
+  removeInterestedTechnologyInLocalStorage,
+} from "../../../state/reducer/technologyInterestsSlice";
+import Loading from "../../../commons/component/LoadingView";
 
 export const FillInterestsScreen = () => {
   const technologies: { technologies: TechnologyData[] } = useSelector(
     (state: RootState) => state.technologies
   );
+
+  const interestedtechnologies = useSelector(
+    (state: RootState) => state.interestedTechnologies
+  );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,13 +48,33 @@ export const FillInterestsScreen = () => {
         inputStyle={styles.textContainer}
       />
       <View style={styles.picklistWrapper}>
-        <PicklistView
-          tags={technologies.technologies}
-          isSelected={() => false}
-          toggleSelection={() => {}}
-          toggleAddition={() => setModalVisible((prev) => !prev)}
-          adding={modalVisible}
-        />
+        {interestedtechnologies.additionLoading === "pending" ? (
+          <Loading />
+        ) : (
+          <PicklistView
+            tags={technologies.technologies}
+            isSelected={(id: number) => {
+              return (
+                interestedtechnologies.technologies &&
+                interestedtechnologies.technologies
+                  .map((e) => e.id)
+                  .includes(id)
+              );
+            }}
+            toggleSelection={(id: number) => {
+              if (interestedtechnologies.technologies.find((e) => e.id == id)) {
+                dispatch(removeInterestedTechnologyInLocalStorage(id));
+              } else {
+                const found = technologies.technologies.filter(
+                  (e) => e.id == id
+                )[0];
+                dispatch(addInterestedTechnologyInLocalStorage(found));
+              }
+            }}
+            toggleAddition={() => setModalVisible((prev) => !prev)}
+            adding={modalVisible}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
