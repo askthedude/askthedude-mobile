@@ -7,6 +7,7 @@ import TitleView from "../../../commons/component/TitleView";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 import { filterProjects } from "../../../state/reducer/projectListSlice";
+import Loading from "../../../commons/component/LoadingView";
 
 export const RecommendationsScreen = () => {
   const { loading, projects: recommendations } = useSelector(
@@ -28,17 +29,21 @@ export const RecommendationsScreen = () => {
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
       <TitleView text="Your Recommendations" />
-      <ScrollView
-        style={styles.scrollViewContainer}
-        contentContainerStyle={styles.recommendationsContainer}
-      >
-        {recommendations.map((recommendation) => (
-          <RecommendationCardView
-            key={recommendation.id}
-            recommendation={recommendation}
-          />
-        ))}
-      </ScrollView>
+      {loading === "pending" ? (
+        <Loading />
+      ) : (
+        <ScrollView
+          style={styles.scrollViewContainer}
+          contentContainerStyle={styles.recommendationsContainer}
+        >
+          {recommendations.map((recommendation) => (
+            <RecommendationCardView
+              key={recommendation.id}
+              recommendation={recommendation}
+            />
+          ))}
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
