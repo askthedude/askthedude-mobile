@@ -83,6 +83,7 @@ export const size = {
     medium: 2,
   },
   icon: {
+    xsmall: 15,
     small: 24,
     smallplus: 28,
     medium: 35,
