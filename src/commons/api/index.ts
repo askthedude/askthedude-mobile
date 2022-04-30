@@ -1,10 +1,13 @@
 import axios, { Method } from "axios";
+import { config } from "../config";
 
-const PROTOCOL = "http";
+const PROTOCOL = config.BACKEND_PROTOCOL;
 
-const SERVER_URL = "192.168.141.214:8084";
+const SERVER_URL = config.BACKEND_URL;
 
-const BASE_URL = `${PROTOCOL}://${SERVER_URL}`;
+const SERVER_PORT = config.BACKEND_PORT;
+
+const BASE_URL = `${PROTOCOL}://${SERVER_URL}:${SERVER_PORT}`;
 
 const validateInputMethod = (method: string) => {
   return (

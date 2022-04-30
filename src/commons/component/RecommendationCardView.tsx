@@ -3,7 +3,6 @@ import React from "react";
 import { PartialProjectData } from "../model/index";
 import { color, size, shadowStyles } from "../style";
 import { Divider } from "./DividerView";
-import { miniSerializeError } from "@reduxjs/toolkit";
 import { TechnologyTagView } from "./TechnologyTagView";
 
 export const RecommendationCardView = ({
@@ -18,7 +17,7 @@ export const RecommendationCardView = ({
       </View>
       <View style={styles.tagsContainer}>
         {recommendation.technologies.slice(0, 3).map((tech) => (
-          <TechnologyTagView techonolgy={tech} />
+          <TechnologyTagView key={tech.id} techonolgy={tech} />
         ))}
       </View>
       <Divider dividerHeight={2} />

@@ -89,7 +89,10 @@ export const RecommendationsScreen = () => {
         contentContainerStyle={styles.recommendationsContainer}
       >
         {recommendations.map((recommendation) => (
-          <RecommendationCardView recommendation={recommendation} />
+          <RecommendationCardView
+            key={recommendation.id}
+            recommendation={recommendation}
+          />
         ))}
       </ScrollView>
     </SafeAreaView>
