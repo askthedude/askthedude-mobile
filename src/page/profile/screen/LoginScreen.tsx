@@ -93,10 +93,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleContainer: { paddingTop: size.padding.xbig },
-  title: {
-    fontSize: size.font.big,
-    fontWeight: "700",
-  },
   formContainer: {
     marginVertical: size.margin.xbig,
     alignItems: "center",

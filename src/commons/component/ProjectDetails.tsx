@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   urlText: {
     fontSize: size.font.small,
     color: color.white,
-    fontWeight: "700",
+    fontWeight: size.fontWeight.fourfuckinghundred,
     textAlign: "center",
   },
 });

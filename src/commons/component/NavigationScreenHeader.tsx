@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: size.font.big,
-    fontWeight: "500",
+    fontWeight: size.fontWeight.fourfuckinghundred,
     color: color.darkblue,
   },
   backContainer: {

@@ -19,9 +19,20 @@ export const color = {
 export const size = {
   font: {
     small: 13,
+    smallplus: 15,
     medium: 18,
     mediumplus: 20,
     big: 24,
+  },
+  fontWeight: {
+    threefuckinghundred: "300",
+    fourfuckinghundred: "400",
+    sevenfuckinghundred: "700",
+  } as {
+    // These are for avoiding typescript type errors when using weights in styles
+    threefuckinghundred: "300";
+    fourfuckinghundred: "400";
+    sevenfuckinghundred: "700";
   },
   margin: {
     small: 5,
@@ -43,6 +54,7 @@ export const size = {
     xsmall: 3,
     small: 5,
     medium: 10,
+    big: 20,
     xbig: 30,
   },
   height: {
@@ -54,6 +66,7 @@ export const size = {
     big: 50,
     xbig: 120,
     xxbig: 170,
+    xxbigplus: 200,
   },
   width: {
     zero: 0,
@@ -79,4 +92,11 @@ export const size = {
   shadowOpacity: {
     weak: 0.3,
   },
+};
+
+export const shadowStyles = {
+  shadowColor: color.shadowColor,
+  shadowOffset: { width: size.width.zero, height: size.height.one },
+  shadowOpacity: color.dimBackground.opacity,
+  elevation: 1,
 };

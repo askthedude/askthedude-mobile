@@ -71,11 +71,11 @@ const styles = StyleSheet.create({
   mainText: {
     color: color.black,
     fontSize: size.font.big,
-    fontWeight: "300",
+    fontWeight: size.fontWeight.threefuckinghundred,
   },
   secondaryText: {
     fontSize: size.font.medium,
-    fontWeight: "300",
+    fontWeight: size.fontWeight.threefuckinghundred,
   },
   userDataContainer: {
     justifyContent: "center",

@@ -17,7 +17,6 @@ export const PartialProjectInfoView = ({
     <TouchableOpacity onPress={() => onClickCallback()}>
       <View style={styles.container}>
         <View style={styles.upperContainer}>
-          <View style={styles.logoContainer}></View>
           <Text style={styles.title}>{project.title}</Text>
           <Text style={styles.author}>
             Posted by: {project.authors[0] || ""}
@@ -29,7 +28,11 @@ export const PartialProjectInfoView = ({
         <View style={styles.lowerContainer}>
           <View style={styles.tagsContainer}>
             {project.technologies.map((tech) => (
-              <TechnologyTagView key={tech.id} techonolgy={tech} />
+              <TechnologyTagView
+                key={tech.id}
+                techonolgy={tech}
+                backgroundColor={color.white}
+              />
             ))}
           </View>
           <UpvotesView upvotes={project.stars} />
@@ -61,15 +64,14 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: size.font.medium,
-    fontWeight: "700",
+    fontWeight: size.fontWeight.fourfuckinghundred,
     maxWidth: "60%",
   },
   author: {
     fontSize: size.font.small,
-    fontWeight: "300",
+    fontWeight: size.fontWeight.threefuckinghundred,
     marginHorizontal: size.margin.big,
   },
-  logoContainer: {},
   middleContaner: {
     flex: 1,
     alignItems: "flex-start",

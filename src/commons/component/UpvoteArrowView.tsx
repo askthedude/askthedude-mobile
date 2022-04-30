@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { color } from "../style/index";
+import { color, size } from "../style/index";
 
 type Props = {
   size: number;
@@ -27,7 +27,7 @@ export const UpvoteArrowView = (props: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderRadius: 50, // round
+    borderWidth: size.borderWidth.small,
+    borderRadius: size.borderRadius.medium,
   },
 });

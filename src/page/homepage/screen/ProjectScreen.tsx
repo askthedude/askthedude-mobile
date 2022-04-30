@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
   },
   descriptionText: {
     fontSize: size.font.medium,
-    fontWeight: "300",
+    fontWeight: size.fontWeight.threefuckinghundred,
     textAlign: "left",
   },
   metadataContainer: {

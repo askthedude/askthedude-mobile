@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { UserData } from "../model";
+import { size } from "../style";
 
 const UserInfoView = ({ user }: { user?: UserData }) => {
   return (
@@ -29,11 +30,11 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingVertical: "1%",
   },
-  title: { fontSize: 18, fontWeight: "400" },
+  title: { fontSize: 18, fontWeight: size.fontWeight.fourfuckinghundred },
   usernameContainer: { margin: "1%" },
-  username: { fontSize: 16, fontWeight: "300" },
+  username: { fontSize: 16, fontWeight: size.fontWeight.threefuckinghundred },
   emailContainer: { margin: "1%" },
-  email: { fontSize: 16, fontWeight: "300" },
+  email: { fontSize: 16, fontWeight: size.fontWeight.threefuckinghundred },
 });
 
 export default UserInfoView;

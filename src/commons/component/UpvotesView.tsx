@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { UpvoteArrowView } from "./UpvoteArrowView";
-import { size } from "../style";
+import { color, size } from "../style";
 
 const UpvotesView = ({
   upvotes,
@@ -12,8 +12,8 @@ const UpvotesView = ({
 }) => {
   return (
     <View style={[styles.container, inputStyle]}>
-      <View style={{ marginRight: 5 }}>
-        <UpvoteArrowView size={15} />
+      <View style={{ marginRight: size.margin.small }}>
+        <UpvoteArrowView size={size.icon.xsmall} />
       </View>
       <Text style={styles.likesContainer}>{upvotes}</Text>
     </View>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontSize: size.font.small,
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold",
+    fontWeight: "400",
   },
 });
 

@@ -14,7 +14,7 @@ export const TechnologyTagView = ({
     <View
       style={[
         styles.container,
-        { backgroundColor: backgroundColor || "white" },
+        { backgroundColor: backgroundColor || color.backgroundPink },
       ]}
     >
       <Text style={styles.text}>{techonolgy.name || ""}</Text>
@@ -31,7 +31,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderColor: color.borderGrey,
-    borderWidth: 1,
+    borderWidth: size.borderWidth.small,
   },
-  text: { color: "black", fontSize: size.font.small, fontWeight: "700" },
+  text: {
+    color: color.black,
+    fontSize: size.font.small,
+    fontWeight: size.fontWeight.fourfuckinghundred,
+  },
 });
