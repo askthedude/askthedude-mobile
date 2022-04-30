@@ -1,85 +1,29 @@
 import { StyleSheet, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { color, size } from "../../../commons/style";
 import { RecommendationCardView } from "../../../commons/component/RecommendationCardView";
 import TitleView from "../../../commons/component/TitleView";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../state/store";
+import { filterProjects } from "../../../state/reducer/projectListSlice";
 
 export const RecommendationsScreen = () => {
-  const recommendations = [
-    {
-      id: 1,
-      title: "Dependency injection container",
-      description: "Simple SPring like injection container from scratch",
-      stars: 5,
-      is_active: true,
-      url: "some_URL",
-      start_date: "soon",
-      technologies: [
-        {
-          id: 1,
-          name: "Java",
-          is_hot: false,
-          resource_url: "Java wtf",
-        },
-        {
-          id: 2,
-          name: "Docker",
-          is_hot: false,
-          resource_url: "docker wtf",
-        },
-      ],
-      authors: ["wazap", "wuzap"],
-    },
-    {
-      id: 2,
-      title: "Dependency injection container",
-      description: "Simple SPring like injection container from scratch",
-      stars: 5,
-      is_active: true,
-      url: "some_URL",
-      start_date: "soon",
-      technologies: [
-        {
-          id: 1,
-          name: "Java",
-          is_hot: false,
-          resource_url: "Java wtf",
-        },
-        {
-          id: 2,
-          name: "Docker",
-          is_hot: false,
-          resource_url: "docker wtf",
-        },
-      ],
-      authors: ["wazap", "wuzap"],
-    },
-    {
-      id: 3,
-      title: "Dependency injection container",
-      description: "Simple SPring like injection container from scratch",
-      stars: 5,
-      is_active: true,
-      url: "some_URL",
-      start_date: "soon",
-      technologies: [
-        {
-          id: 1,
-          name: "Java",
-          is_hot: false,
-          resource_url: "Java wtf",
-        },
-        {
-          id: 2,
-          name: "Docker",
-          is_hot: false,
-          resource_url: "docker wtf",
-        },
-      ],
-      authors: ["wazap", "wuzap"],
-    },
-  ];
+  const { loading, projects: recommendations } = useSelector(
+    (root: RootState) => root.projects
+  );
+  const technologies = useSelector(
+    (root: RootState) => root.interestedTechnologies.technologies
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (technologies && technologies.length > 0) {
+      dispatch(
+        filterProjects({ technology_ids: technologies.map((e) => e.id) })
+      );
+    }
+  }, [technologies]);
 
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
