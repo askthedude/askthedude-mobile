@@ -32,26 +32,26 @@ export const PicklistView = ({
         { borderColor: errorMessage !== "" ? color.error : color.borderGrey },
       ]}
     >
-      {!adding && (
-        <>
-          {tags.map((t) => (
-            <SelectableTechnologyTagView
-              key={t.id}
-              techonolgy={t}
-              selected={isSelected(t.id)}
-              pressCallback={() => toggleSelection(t.id)}
-            />
-          ))}
+      {/* {!adding && ( */}
+      <>
+        {tags.map((t) => (
           <SelectableTechnologyTagView
-            techonolgy={{ name: "", id: -1, resource_url: "", is_hot: false }}
-            selected={false}
-            iconName="add-circle-outline"
-            pressCallback={() => {
-              toggleAddition();
-            }}
+            key={t.id}
+            techonolgy={t}
+            selected={isSelected(t.id)}
+            pressCallback={() => toggleSelection(t.id)}
           />
-        </>
-      )}
+        ))}
+        <SelectableTechnologyTagView
+          techonolgy={{ name: "", id: -1, resource_url: "", is_hot: false }}
+          selected={false}
+          iconName="add-circle-outline"
+          pressCallback={() => {
+            toggleAddition();
+          }}
+        />
+      </>
+      {/* )} */}
       {adding ? (
         <AddTechnologyModal closeCallback={() => toggleAddition()} />
       ) : null}

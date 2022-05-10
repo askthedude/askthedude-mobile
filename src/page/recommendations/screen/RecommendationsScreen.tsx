@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, RefreshControl } from "react-native";
 import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { color, size } from "../../../commons/style";
@@ -18,12 +18,16 @@ export const RecommendationsScreen = () => {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const refreshRecommendations = () => {
     if (technologies && technologies.length > 0) {
       dispatch(
         filterProjects({ technology_ids: technologies.map((e) => e.id) })
       );
     }
+  };
+
+  useEffect(() => {
+    refreshRecommendations();
   }, [technologies]);
 
   return (
@@ -35,6 +39,13 @@ export const RecommendationsScreen = () => {
         <ScrollView
           style={styles.scrollViewContainer}
           contentContainerStyle={styles.recommendationsContainer}
+          refreshControl={
+            <RefreshControl
+              // @ts-ignore
+              refreshing={loading === "pending"}
+              onRefresh={() => refreshRecommendations()}
+            />
+          }
         >
           {recommendations.map((recommendation) => (
             <RecommendationCardView

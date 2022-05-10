@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, RefreshControl } from "react-native";
 import React from "react";
 import { size } from "../style";
 import { PartialProjectData } from "../model";
@@ -7,8 +7,12 @@ import { useNavigation } from "@react-navigation/native";
 
 export const ProjectListView = ({
   projects,
+  refreshing = false,
+  onRefresh = () => {},
 }: {
   projects: PartialProjectData[];
+  refreshing?: boolean;
+  onRefresh?: () => void;
 }) => {
   const navigation: any = useNavigation();
 
@@ -16,6 +20,9 @@ export const ProjectListView = ({
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={() => onRefresh()} />
+      }
     >
       {projects.map((project) => (
         <PartialProjectInfoView

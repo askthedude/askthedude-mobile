@@ -1,13 +1,14 @@
 import { StyleSheet } from "react-native";
 import React from "react";
 import { PartialProjectData } from "../../../commons/model";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../state/store";
 import Loading from "../../../commons/component/LoadingView";
 import { color, size } from "../../../commons/style";
 import { SafeAreaView } from "react-native-safe-area-context";
 import SearchInputView from "../../../commons/component/SearchInputView";
 import { ProjectListView } from "../../../commons/component/ProjectListView";
+import { filterProjects } from "../../../state/reducer/projectListSlice";
 
 export const ProjectListScreen = () => {
   const {
@@ -17,13 +18,21 @@ export const ProjectListScreen = () => {
     (state: RootState) => state.projects
   );
 
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={styles.safeAreaViewcontainer}>
       <SearchInputView />
       {loading === "pending" ? (
         <Loading />
       ) : (
-        <ProjectListView projects={projects} />
+        <ProjectListView
+          projects={projects}
+          onRefresh={() => {
+            dispatch(filterProjects({}));
+          }}
+          refreshing={loading === "pending"}
+        />
       )}
     </SafeAreaView>
   );

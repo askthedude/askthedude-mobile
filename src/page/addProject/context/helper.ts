@@ -1,4 +1,3 @@
-import { Alert } from "react-native";
 export const validateInputs = (inputs: any, setInputs: any) => {
   let valid = true;
   if (inputs.name === "") {

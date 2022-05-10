@@ -47,7 +47,9 @@ const AddProjectScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, modalVisible ? styles.dimmedColor : {}]}
+    >
       {addProject.loading === "pending" ? (
         <Loading />
       ) : (
@@ -163,6 +165,10 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
     marginVertical: size.margin.medium,
     marginBottom: size.margin.xbig,
+  },
+  dimmedColor: {
+    backgroundColor: color.dimBackground.color,
+    opacity: color.dimBackground.opacity,
   },
 });
 
